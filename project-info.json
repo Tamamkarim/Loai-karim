@@ -1,0 +1,42 @@
+{
+  "name": "Master Renovation Website",
+  "version": "1.0.0",
+  "description": "موقع ويب احترافي لعرض خدمات الترميم الداخلي في السويد - Professional website for interior renovation services in Sweden",
+  "author": "Loai Karim",
+  "contact": {
+    "email": "louai.karim2009@gmail.com",
+    "phone": "+46761429023",
+    "location": "Sweden"
+  },
+  "languages": ["ar", "en", "sv"],
+  "features": [
+    "Responsive Design",
+    "Multi-language Support",
+    "Interactive Before/After Viewer",
+    "Project Gallery",
+    "Pricing Packages",
+    "Contact Form",
+    "Customer Reviews",
+    "Animated Statistics"
+  ],
+  "technologies": {
+    "frontend": ["HTML5", "CSS3", "JavaScript", "SVG"],
+    "styling": ["CSS Custom Properties", "Flexbox", "Grid Layout"],
+    "animations": ["CSS Animations", "Transitions"],
+    "responsive": ["Mobile First", "Flexible Grid", "Media Queries"]
+  },
+  "browser_support": {
+    "modern": "Full support for modern browsers",
+    "minimum": "IE11+ with limited features"
+  },
+  "performance": {
+    "optimization": ["Minified CSS", "Compressed Images", "Lazy Loading"],
+    "accessibility": ["ARIA Labels", "Keyboard Navigation", "Screen Reader Support"]
+  },
+  "deployment": {
+    "hosting": "Any web server",
+    "requirements": "Static file hosting",
+    "recommended": ["GitHub Pages", "Netlify", "Vercel"]
+  },
+  "license": "© 2025 Master Renovation - All Rights Reserved"
+}
