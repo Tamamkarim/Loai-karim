@@ -20,6 +20,8 @@ const i18n = {
     contactBtnSidebar: "Ota yhteyttä WhatsAppissa",
     whyTitle: "Miksi valita meidät?",
     whyList: ["Ruotsalaiset standardit","Läpinäkyvä hinnoittelu","Laadukkaat materiaalit","Nopea viestintä"],
+    responsiveTitle: "📱 Laitteiden vaste",
+    responsiveList: ["💻 Tietokoneet","📱 Älypuhelimet","🖥️ Tabletit"],
     footer: "© {year} LK Renovation — Kaikki oikeudet pidätetään",
     videoShowcaseTitle: "Katso projektimme",
     videoShowcaseDesc: "Selaa videoita nähdäksesi työn laadun",
@@ -94,6 +96,8 @@ const i18n = {
     contactInfo: "WhatsApp: +46 761429023",
     whyTitle: "Why choose us?",
     whyList: ["Swedish standards","Transparent pricing","High-quality materials","Fast communication"],
+    responsiveTitle: "📱 Device Responsive",
+    responsiveList: ["💻 Computers","📱 Smartphones","🖥️ Tablets"],
     footer: "© {year} LK Renovation — All rights reserved",
     videoShowcaseTitle: "Watch Our Projects",
     videoShowcaseDesc: "Browse videos to see the quality of our work",
@@ -167,6 +171,8 @@ const i18n = {
     contactBtnSidebar: "Kontakta via WhatsApp",
     whyTitle: "Varför välja oss?",
     whyList: ["Svenska standarder","Transparent prissättning","Material av hög kvalitet","Snabb kommunikation"],
+    responsiveTitle: "📱 Enhetsrespons",
+    responsiveList: ["💻 Datorer","📱 Smartphones","🖥️ Surfplattor"],
     footer: "© {year} LK Renovering — Alla rättigheter förbehållna",
     videoShowcaseTitle: "Se Våra Projekt",
     videoShowcaseDesc: "Bläddra igenom videor för att se kvaliteten på vårt arbete",
@@ -240,6 +246,8 @@ const i18n = {
     contactBtnSidebar: "تواصل عبر واتساب",
     whyTitle: "لماذا تختارنا؟",
     whyList: ["معايير سويدية","أسعار شفافة","مواد عالية الجودة","استجابة سريعة"],
+    responsiveTitle: "📱 الاستجابة للأجهزة",
+    responsiveList: ["💻 أجهزة الكمبيوتر","📱 الهواتف الذكية","🖥️ الأجهزة اللوحية"],
     footer: "© {year} LK Renovation — جميع الحقوق محفوظة",
     videoShowcaseTitle: "شاهد مشاريعنا",
     videoShowcaseDesc: "تصفح الفيديوهات لرؤية جودة عملنا",
@@ -461,6 +469,18 @@ function render(lang){
     li.textContent = it;
     whyList.appendChild(li);
   });
+
+  // responsive list
+  setText('responsiveTitle', data.responsiveTitle);
+  const responsiveList = document.getElementById('responsiveList');
+  if(responsiveList){
+    responsiveList.innerHTML = '';
+    (data.responsiveList || []).forEach(it=>{
+      const li = document.createElement('li');
+      li.textContent = it;
+      responsiveList.appendChild(li);
+    });
+  }
 
   // footer year and copyright
   const year = new Date().getFullYear();
