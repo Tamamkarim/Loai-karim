@@ -1,926 +1,431 @@
-/* Main consolidated JS
-   Combined from: script.js + video-controller.js
-   Order: interactive site script (script.js) then optional video-controller class appended
-   Originals kept in assets/js/ (no deletion performed)
-*/
-
-/* === Begin script.js content === */
-// إعداد السنة
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// تعطيل EmailJS نهائياً لمنع الأخطاء
-if (typeof emailjs !== 'undefined') {
-  emailjs = undefined;
-  console.log('EmailJS disabled to prevent errors');
-}
-
-// ==== عدادات الإحصائيات المتحركة ====
-function animateCounters() {
-  const counters = document.querySelectorAll('.stat-number');
-  
-  counters.forEach(counter => {
-    const target = parseInt(counter.getAttribute('data-count'));
-    const increment = target / 50; // سرعة العد
-    let current = 0;
-    
-    const updateCounter = () => {
-      if (current < target) {
-        current += increment;
-        counter.textContent = Math.ceil(current);
-        setTimeout(updateCounter, 30);
-      } else {
-        counter.textContent = target;
-      }
-    };
-    
-    updateCounter();
-  });
-}
-
-// تشغيل العدادات عند ظهور القسم
-function handleIntersection(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounters();
-      observer.unobserve(entry.target); // تشغيل مرة واحدة فقط
-    }
-  });
-}
-
-const observer = new IntersectionObserver(handleIntersection, {
-  threshold: 0.5
-});
-
-// مراقبة قسم الإحصائيات وتهيئة مراقبة التحريكات
-document.addEventListener('DOMContentLoaded', function() {
-  // Observe all animated elements
-  const animatedElements = [
-    '.stats-card',
-    '.fade-in',
-    '.stagger-fade',
-    '.slide-up',
-    '.reveal',
-    '.scale-in'
-  ];
-
-  const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // For stats card
-        if (entry.target.classList.contains('stats-card')) {
-          animateCounters();
-        }
-        
-        // For stagger fade elements
-        if (entry.target.classList.contains('stagger-fade')) {
-          entry.target.classList.add('animate');
-        }
-        
-        // For all other animations
-        entry.target.style.visibility = 'visible';
-        
-        // Stop observing after animation is triggered
-        animationObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.2,
-    rootMargin: '50px'
-  });
-
-  // Observe all elements that need animations
-  animatedElements.forEach(selector => {
-    document.querySelectorAll(selector).forEach(element => {
-      // Initially hide the element
-      element.style.visibility = 'hidden';
-      // Start observing
-      animationObserver.observe(element);
-    });
-  });
-});
-
-// ==== نظام تعدد اللغات ====
-document.addEventListener('DOMContentLoaded', function() {
-  const langButtons = document.querySelectorAll('.lang-btn');
-  const html = document.documentElement;
-  
-  // قراءة اللغة المحفوظة من التخزين المحلي
-  const savedLang = localStorage.getItem('website-language') || 'ar';
-  switchLanguage(savedLang);
-  
-  // دالة تبديل اللغة
-  function switchLanguage(lang) {
-    // تحديث خاصيات HTML
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    
-    // تحديث جميع العناصر
-    const elements = document.querySelectorAll('[data-ar][data-en][data-sv]');
-    elements.forEach(element => {
-      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-        element.placeholder = element.getAttribute(`data-${lang}`);
-      } else {
-        element.textContent = element.getAttribute(`data-${lang}`);
-      }
-    });
-    
-    // تحديث placeholder للحقول المخصصة
-    const placeholderElements = document.querySelectorAll('[data-ar-placeholder][data-en-placeholder][data-sv-placeholder]');
-    placeholderElements.forEach(element => {
-      element.placeholder = element.getAttribute(`data-${lang}-placeholder`);
-    });
-    
-    // تحديث الأزرار
-    langButtons.forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.getAttribute('data-lang') === lang) {
-        btn.classList.add('active');
-      }
-    });
-    
-    // حفظ اللغة في التخزين المحلي
-    localStorage.setItem('website-language', lang);
+/* Multi-language content (keeps previous translations, adjusted lines) */
+const i18n = {
+  fi: {
+    dir: "ltr",
+    brandTitle: "LK Renovation",
+    brandSubtitle: "Kodin remontointi ja sisustus — Ruotsin kokemus",
+    heroTitle: "Ammattitaitoista kodin remontointia ja sisustusta",
+    heroText: "Muutamme kodit toimiviksi ja kauniiksi tiloiksi — keittiöt, lattiat, maalaus, sähkötyöt ja kattovalaistus.",
+    services: [
+      {title:"Keittiöremontti", text:"Suunnittelu ja toteutus: kaapistot, tasot, putkityöt ja viimeistely."},
+      {title:"Lattiat", text:"Laadukas asennus: parketti, laminaatti, vinyyli."},
+      {title:"Seinämaalaus", text:"Kestävät eurooppalaiset maalit ja modernit pinnat."},
+      {title:"Sähkötyöt", text:"Turvalliset päivitykset ja modernit ratkaisut."},
+      {title:"Kattovalaistus", text:"Räätälöidyt alasvalot ja koristevalaistus."},
+      {title:"Projektinhallinta", text:"Suunnittelusta luovutukseen — aikataulut ja laadunvarmistus."}
+    ],
+    aboutTitle: "Tietoa meistä",
+    aboutText: "Nimeni on [Nimesi]. Erikoistun kodin remontointiin vahvalla Ruotsissa kehitetyllä kokemuksella. Panostan yksityiskohtiin, turvallisuuteen ja moderniin muotoiluun.",
+    contactBtn: "Ota yhteyttä",
+    contactBtnSidebar: "Ota yhteyttä WhatsAppissa",
+    whyTitle: "Miksi valita meidät?",
+    whyList: ["Ruotsalaiset standardit","Läpinäkyvä hinnoittelu","Laadukkaat materiaalit","Nopea viestintä"],
+    footer: "© {year} LK Renovation — Kaikki oikeudet pidätetään",
+    videoShowcaseTitle: "Katso projektimme",
+    videoShowcaseDesc: "Selaa videoita nähdäksesi työn laadun",
+    video1Title: "Työn alla",
+    video1Desc: "Työvaiheet ja toteutus",
+    video2Title: "Jälkeen",
+    video2Desc: "Lopputulos ja viimeistely",
+    video3Title: "Jälkeen",
+    video3Desc: "Uusi ilme remontin jälkeen",
+    // Testimonials
+    testimonialsTitle: "Mitä asiakkaamme sanovat",
+    testimonialsDesc: "Asiakkaidemme arviot",
+    testimonial1Text: "Loistavaa ja ammattimaista työtä! Keittiöni remontoitiin ammattitaidolla ja aikataulun mukaan. Tulos ylitti odotukseni.",
+    testimonial1Name: "Ahmed Al-Saeed",
+    testimonial1Location: "Stenungsund",
+    testimonial2Text: "Erinomainen palvelu ja kohtuulliset hinnat. Ammattitaitoinen työryhmä ja korkealaatuiset materiaalit. Suosittelen tätä yritystä.",
+    testimonial2Name: "Fatima Omar",
+    testimonial2Location: "Ruotsi",
+    testimonial3Text: "Kotini täysin uusittu. Tarkka työ ja oikea-aikainen toimitus. Kiitos tästä upeasta saavutuksesta.",
+    testimonial3Name: "Abdullah",
+    testimonial3Location: "Örebro",
+    testimonial4Text: "Paras remontointiyritys, jonka kanssa olen työskennellyt. Luotettavuus aikatauluissa ja korkea laatu tekivät minusta vakioasiakkaan.",
+    testimonial4Name: "Ahmed Karim",
+    testimonial4Location: "Helsinki",
+    // Footer
+    footerContactTitle: "Ota yhteyttä",
+    footerLocation: "Ruotsi",
+    footerEmail: "louai.karim2009@gmail.com",
+    footerPhone: "023 429 761 46+",
+    footerServicesTitle: "Palvelumme",
+    footerServicesList: ["✓ Keittiöremontti", "✓ Seinämaalaus", "✓ Lattia-asennus"],
+    footerAboutTitle: "Historiamme",
+    footerRating: "Arvio 4/5 asiakkailtamme",
+    footerCopyright: "© {year} Kaikki oikeudet pidätetään — Master Remontointi",
+    footerDeveloped: "Kehitetty 💗 Ruotsissa"
+  },
+  en: {
+    dir: "ltr",
+    brandTitle: "LK Renovation",
+    brandSubtitle: "Home Renovation & Interior Design — Swedish experience",
+    heroTitle: "Professional home renovation & interior design",
+    heroText: "We transform homes into beautiful, functional spaces — kitchens, floors, paint, electrical, and ceiling lighting.",
+    services: [
+      {title:"Kitchen Renovation", text:"Design & build: cabinets, counters, plumbing and finishing."},
+      {title:"Flooring", text:"Premium installation: hardwood, laminate, vinyl."},
+      {title:"Wall Painting", text:"Durable European paints and modern finishes."},
+      {title:"Electrical Works", text:"Safe upgrades and modern wiring."},
+      {title:"Ceiling Lighting", text:"Custom recessed & decorative lighting."},
+      {title:"Project Management", text:"From planning to delivery — timelines & quality control."}
+    ],
+    aboutTitle: "About LK Renovation",
+    aboutText: "My name is Louai Karim. I specialize in home renovation with strong experience developed in Sweden. I focus on detail, safety and modern design.",
+    contactBtn: "Contact Now",
+    contactBtnSidebar: "Contact via WhatsApp",
+    contactInfo: "WhatsApp: +46 761429023",
+    whyTitle: "Why choose us?",
+    whyList: ["Swedish standards","Transparent pricing","High-quality materials","Fast communication"],
+    footer: "© {year} LK Renovation — All rights reserved",
+    videoShowcaseTitle: "Watch Our Projects",
+    videoShowcaseDesc: "Browse videos to see the quality of our work",
+    video1Title: "Project Before Renovation",
+    video1Desc: "Initial condition of the home",
+    video2Title: "Project During Work",
+    video2Desc: "Stages of implementation and renovation",
+    video3Title: "Final Result",
+    video3Desc: "Home after complete renovation",
+    // Testimonials
+    testimonialsTitle: "What Our Clients Say",
+    testimonialsDesc: "Reviews from our valued clients",
+    testimonial1Text: "Excellent and professional work! My kitchen was renovated professionally and on time. The result exceeded my expectations.",
+    testimonial1Name: "Ahmed Al-Saeed",
+    testimonial1Location: "Stenungsund",
+    testimonial2Text: "Excellent service and reasonable prices. Professional team and high-quality materials. I recommend this company.",
+    testimonial2Name: "Fatima Omar",
+    testimonial2Location: "Sweden",
+    testimonial3Text: "My entire home was renovated. Precise work and timely delivery. Thank you for this amazing achievement.",
+    testimonial3Name: "Abdullah",
+    testimonial3Location: "Örebro",
+    testimonial4Text: "The best renovation company I've worked with. Reliability in schedules and high quality made me a permanent customer.",
+    testimonial4Name: "Ahmed Karim",
+    testimonial4Location: "Helsinki",
+    // Footer
+    footerContactTitle: "Contact Us",
+    footerLocation: "Sweden",
+    footerEmail: "louai.karim2009@gmail.com",
+    footerPhone: "023 429 761 46+",
+    footerServicesTitle: "Our Services",
+    footerServicesList: ["✓ Kitchen Renovation", "✓ Wall Painting", "✓ Floor Installation"],
+    footerAboutTitle: "Our History",
+    footerRating: "Rating 4/5 from our clients",
+    footerCopyright: "© {year} All rights reserved — Master Renovation",
+    footerDeveloped: "Developed with 💗 in Sweden"
+  },
+  sv: {
+    dir: "ltr",
+    brandTitle: "LK Renovering",
+    brandSubtitle: "Hemrenovering & Inredning — Erfarenhet från Sverige",
+    heroTitle: "Professionell hemrenovering och inredning",
+    heroText: "Vi förvandlar hem till vackra och funktionella utrymmen — kök, golv, måleri, el och takbelysning.",
+    services: [
+      {title:"Köksrenovering", text:"Design och bygg: skåp, bänkskivor och VVS."},
+      {title:"Golv", text:"Högkvalitativ installation: parkett, laminat, vinyl."},
+      {title:"Väggmålning", text:"Hållbara europeiska färger och moderna ytbehandlingar."},
+      {title:"Elarbete", text:"Säkra uppgraderingar och moderna elsystem."},
+      {title:"Takbelysning", text:"Skräddarsydd infälld och dekorativ belysning."},
+      {title:"Projektledning", text:"Från planering till leverans — tidplan & kvalitetskontroll."}
+    ],
+    aboutTitle: "Om LK Renovering",
+    aboutText: "Jag heter Louai Karim. Jag är specialiserad på hemrenovering med lång erfarenhet utvecklad i Sverige. Jag fokuserar på detaljer, säkerhet och modern design.",
+    contactBtn: "Kontakta oss",
+    contactBtnSidebar: "Kontakta via WhatsApp",
+    whyTitle: "Varför välja oss?",
+    whyList: ["Svenska standarder","Transparent prissättning","Material av hög kvalitet","Snabb kommunikation"],
+    footer: "© {year} LK Renovering — Alla rättigheter förbehållna",
+    videoShowcaseTitle: "Se Våra Projekt",
+    videoShowcaseDesc: "Bläddra igenom videor för att se kvaliteten på vårt arbete",
+    video1Title: "Projekt Före Renovering",
+    video1Desc: "Hemmet i ursprungligt skick",
+    video2Title: "Projekt Under Arbete",
+    video2Desc: "Genomförande- och renoveringsstadier",
+    video3Title: "Slutresultat",
+    video3Desc: "Hemmet efter komplett renovering",
+    // Testimonials
+    testimonialsTitle: "Vad våra kunder säger",
+    testimonialsDesc: "Recensioner från våra uppskattade kunder",
+    testimonial1Text: "Utmärkt och professionellt arbete! Mitt kök renoverades professionellt och i tid. Resultatet överträffade mina förväntningar.",
+    testimonial1Name: "Ahmed Al-Saeed",
+    testimonial1Location: "Stenungsund",
+    testimonial2Text: "Utmärkt service och rimliga priser. Professionellt team och högkvalitativa material. Jag rekommenderar detta företag.",
+    testimonial2Name: "Fatima Omar",
+    testimonial2Location: "Sverige",
+    testimonial3Text: "Mitt hela hem renoverades. Precist arbete och leverans i tid. Tack för denna fantastiska prestation.",
+    testimonial3Name: "Abdullah",
+    testimonial3Location: "Örebro",
+    testimonial4Text: "Det bästa renoveringsföretaget jag har arbetat med. Tillförlitlighet i tidsscheman och hög kvalitet gjorde mig till en permanent kund.",
+    testimonial4Name: "Ahmed Karim",
+    testimonial4Location: "Helsingfors",
+    // Footer
+    footerContactTitle: "Kontakta oss",
+    footerLocation: "Sverige",
+    footerEmail: "louai.karim2009@gmail.com",
+    footerPhone: "023 429 761 46+",
+    footerServicesTitle: "Våra tjänster",
+    footerServicesList: ["✓ Köksrenovering", "✓ Väggmålning", "✓ Golvinstallation"],
+    footerAboutTitle: "Vår historia",
+    footerRating: "Betyg 4/5 från våra kunder",
+    footerCopyright: "© {year} Alla rättigheter förbehållna — Mästare Renovering",
+    footerDeveloped: "Utvecklad med 💗 i Sverige"
+  },
+  ar: {
+    dir: "rtl",
+    brandTitle: "LK Renovation",
+    brandSubtitle: "ترميم وتصميم داخلي — خبرة من السويد",
+    heroTitle: "ترميم وتصميم داخبر احترافي",
+    heroText: "نحوّل المنازل إلى مساحات عملية وأنيقة — المطابخ، الأرضيات، الدهان، الكهرباء والإضاءة السقفية.",
+    services: [
+      {title:"ترميم المطابخ", text:"تصميم وتنفيذ كامل: خزائن، أسطح عمل، سباكة وتشطيب."},
+      {title:"الأرضيات", text:"تركيب أرضيات عالية الجودة: باركيه، لامينت، فينيل."},
+      {title:"طلاء الجدران", text:"دهانات أوروبية متينة وتشطيبات حديثة."},
+      {title:"أعمال كهربائية", text:"ترقيات آمنة وحلول كهربائية عصرية."},
+      {title:"إضاءة السقف", text:"إضاءات مخفية وزخرفية مهنية."},
+      {title:"إدارة المشروع", text:"من التخطيط حتى التسليم — جداول زمنية و رقابة جودة."}
+    ],
+    aboutTitle: "عن LK Renovation",
+    aboutText: "اسمي [اسمك]. أختص بترميم وتجديد المنازل وخبرتي تطورت في السويد. أركز على التفاصيل والأمان والتصميم العصري.",
+    contactBtn: "اتصل الآن",
+    contactBtnSidebar: "تواصل عبر واتساب",
+    whyTitle: "لماذا تختارنا؟",
+    whyList: ["معايير سويدية","أسعار شفافة","مواد عالية الجودة","استجابة سريعة"],
+    footer: "© {year} LK Renovation — جميع الحقوق محفوظة",
+    videoShowcaseTitle: "شاهد مشاريعنا",
+    videoShowcaseDesc: "تصفح الفيديوهات لرؤية جودة عملنا",
+    video1Title: "مشروع قبل التجديد",
+    video1Desc: "الحالة الأولية للمنزل",
+    video2Title: "مشروع أثناء العمل",
+    video2Desc: "مراحل التنفيذ والترميم",
+    video3Title: "النتيجة النهائية",
+    video3Desc: "المنزل بعد التجديد الكامل",
+    // Testimonials
+    testimonialsTitle: "ماذا يقول زبائننا",
+    testimonialsDesc: "آراء عملائنا الكرام",
+    testimonial1Text: "عمل رائع ومميّز! تم ترميم مطبخي بشكل احترافي وبَقى الوقت المحدد. النتيجة فاقت توقعاتي.",
+    testimonial1Name: "أحمد السعيد",
+    testimonial1Location: "ستيرسنّقال",
+    testimonial2Text: "الخدمة ممتازة والأسعار معقولة. فريق عمل محترف ومواد عالية الجودة. أنصح بهذه الشركة.",
+    testimonial2Name: "فاطمة عمر",
+    testimonial2Location: "السويد",
+    testimonial3Text: "تم تجديد منزلي بالكامل. العمل دقيق والتسليم في الموعد. شكراً لكم على هذا الإنجاز الرائع.",
+    testimonial3Name: "عبد الله",
+    testimonial3Location: "اورستشوند",
+    testimonial4Text: "أفضل شركة تَرميم تعاملت معها. الثقة في المواعيد والجودة العالية جعلتني عميل دائم.",
+    testimonial4Name: "أحمد كريم",
+    testimonial4Location: "هلسنكي",
+    // Footer
+    footerContactTitle: "تواصل معنا",
+    footerLocation: "السويد",
+    footerEmail: "louai.karim2009@gmail.com",
+    footerPhone: "023 429 761 46+",
+    footerServicesTitle: "خدماتنا",
+    footerServicesList: ["✓ ترميم المطابخ", "✓ دهان الجدران", "✓ تركيب الأرضيات"],
+    footerAboutTitle: "تاريخنا",
+    footerRating: "تقييم 4/5 من عملائنا",
+    footerCopyright: "© {year} حقوق محفوظة — ماستر ترميم",
+    footerDeveloped: "تم التطوير 💗 في السويد"
   }
-  
-  // التعامل مع النقر على أزرار اللغة
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
-      switchLanguage(lang);
-    });
-  });
-
-  // سلوك قائمة اللغات بالنقر: النقر على اللغة النشطة يفتح/يغلق الخيارات، والنقر على لغة جديدة يختارها ويغلق الصندوق
-  const langSwitcher = document.querySelector('.language-switcher');
-  if (langSwitcher) {
-    langSwitcher.addEventListener('click', (e) => {
-      const clicked = e.target.closest('.lang-btn');
-      if (!clicked) return;
-
-      // إذا ضُغطت على الزر النشط حالياً -> تبديل حالة القائمة (فتح/إغلاق)
-      if (clicked.classList.contains('active')) {
-        langSwitcher.classList.toggle('open');
-      } else {
-        // إذا اختار المستخدم لغة جديدة -> تأكد من إغلاق القائمة
-        langSwitcher.classList.remove('open');
-      }
-    });
-
-    // إغلاق القائمة عند الضغط خارجها
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.language-switcher')) {
-        langSwitcher.classList.remove('open');
-      }
-    });
-  }
-});
-
-// ==== Video Controls - Simple ====
-document.addEventListener('DOMContentLoaded', function() {
-  const beforeVideo = document.getElementById('beforeVideo');
-  const afterVideo = document.getElementById('afterVideo');
-  const playBothBtn = document.getElementById('playBothBtn');
-  const pauseAllBtn = document.getElementById('pauseAllBtn');
-  const syncVideosBtn = document.getElementById('syncVideosBtn');
-
-  // Only proceed if videos exist
-  if (!beforeVideo || !afterVideo) {
-    console.log('Video elements not found, skipping video controls setup');
-    return;
-  }
-
-  // تشغيل كلا الفيديوين
-  if (playBothBtn) {
-    playBothBtn.addEventListener('click', function() {
-      try {
-        beforeVideo.play();
-        afterVideo.play();
-      } catch (error) {
-        console.warn('Error playing videos:', error);
-      }
-    });
-  }
-
-  // إيقاف كلا الفيديوين
-  if (pauseAllBtn) {
-    pauseAllBtn.addEventListener('click', function() {
-      try {
-        beforeVideo.pause();
-        afterVideo.pause();
-      } catch (error) {
-        console.warn('Error pausing videos:', error);
-      }
-    });
-  }
-
-  // مزامنة الفيديوهات
-  if (syncVideosBtn) {
-    syncVideosBtn.addEventListener('click', function() {
-      try {
-        // إيقاف كلاهما أولاً
-        beforeVideo.pause();
-        afterVideo.pause();
-        
-        // إعادة تعيين الوقت للبداية
-        beforeVideo.currentTime = 0;
-        afterVideo.currentTime = 0;
-        
-        // تشغيل متزامن
-        setTimeout(() => {
-          beforeVideo.play();
-          afterVideo.play();
-        }, 100);
-      } catch (error) {
-        console.warn('Error syncing videos:', error);
-      }
-    });
-  }
-
-  // إيقاف الفيديو الآخر عند بدء تشغيل أحدهما منفرداً
-  beforeVideo.addEventListener('play', function() {
-    if (!beforeVideo.classList.contains('playing-both')) {
-      afterVideo.pause();
-    }
-  });
-
-  afterVideo.addEventListener('play', function() {
-    if (!afterVideo.classList.contains('playing-both')) {
-      beforeVideo.pause();
-    }
-  });
-
-  // عند الضغط على زر "تشغيل كلا الفيديوين"
-  if (playBothBtn) {
-    playBothBtn.addEventListener('click', function() {
-      // إضافة class مؤقت لمنع الإيقاف التلقائي
-      beforeVideo.classList.add('playing-both');
-      afterVideo.classList.add('playing-both');
-      
-      // إزالة الـ class بعد ثانية واحدة
-      setTimeout(() => {
-        beforeVideo.classList.remove('playing-both');
-        afterVideo.classList.remove('playing-both');
-      }, 1000);
-    });
-  }
-});
-
-// إضافة تأثير النبض للمزامنة
-const pulseKeyframes = `
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-`;
-
-// إضافة الـ CSS للتأثيرات
-if (!document.getElementById('video-animations')) {
-  const style = document.createElement('style');
-  style.id = 'video-animations';
-  style.textContent = pulseKeyframes;
-  document.head.appendChild(style);
-}
-
-// ==== التعامل مع النقر على المشاريع لعرض المقارنة ====
-document.addEventListener('DOMContentLoaded', function() {
-  const projects = document.querySelectorAll('.project');
-  const mainViewer = document.getElementById('baWrap');
-  const mainBefore = mainViewer.querySelector('img');
-  const mainAfter = mainViewer.querySelector('.ba-after img');
-  
-  projects.forEach(project => {
-    project.addEventListener('click', function() {
-      const beforeSrc = this.getAttribute('data-before');
-      const afterSrc = this.getAttribute('data-after');
-      const title = this.getAttribute('data-title');
-      
-      // تحديث العارض الرئيسي
-      if(beforeSrc && afterSrc) {
-        mainBefore.src = beforeSrc;
-        mainAfter.src = afterSrc;
-        mainViewer.setAttribute('data-before', beforeSrc);
-        mainViewer.setAttribute('data-after', afterSrc);
-        
-        // انتقال سلس إلى العارض
-        mainViewer.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-        
-        // تأثير بصري للنقر
-        this.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 150);
-      }
-    });
-    
-    // إضافة مؤشر النقر
-    project.style.cursor = 'pointer';
-  });
-});
-
-// ==== التعامل مع أزرار الأسعار ====
-document.addEventListener('DOMContentLoaded', function() {
-  const pricingBtns = document.querySelectorAll('.pricing-btn');
-  pricingBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const packageName = this.closest('.pricing-card').querySelector('h3').textContent;
-      const price = this.closest('.pricing-card').querySelector('.price').textContent;
-      
-      // تحديث نموذج التواصل تلقائياً
-      const messageField = document.getElementById('message');
-      if(messageField) {
-        messageField.value = `أود الاستفسار عن ${packageName} بسعر ${price}. يرجى التواصل معي لمناقشة التفاصيل.`;
-        messageField.scrollIntoView({behavior: 'smooth'});
-      }
-    });
-  });
-});
-
-// ==== قبل/بعد viewer ==== (unchanged behavior)
-(function(){
-  const wrap = document.getElementById('baWrap');
-  const after = document.getElementById('baAfter');
-  const handle = document.getElementById('baHandle');
-  const imgBefore = wrap.querySelector('img');
-
-  // set initial sizes on load
-  function setPos(percent){
-    if(percent<0) percent=0;
-    if(percent>100) percent=100;
-    after.style.width = percent + '%';
-    handle.style.left = percent + '%';
-  }
-
-  // responsiveness: when image loads, fix height
-  function getWrapRect(){ return wrap.getBoundingClientRect(); }
-
-  let dragging=false;
-  const updateFromClientX = (clientX)=>{
-    const rect = getWrapRect();
-    let pct = ( (clientX - rect.left) / rect.width ) * 100;
-    setPos(pct);
-  };
-
-  // events
-  handle.addEventListener('pointerdown', (e)=>{ dragging=true; handle.setPointerCapture(e.pointerId); });
-  window.addEventListener('pointerup', ()=>{ dragging=false; });
-  window.addEventListener('pointermove', (e)=>{ if(dragging) updateFromClientX(e.clientX); });
-
-  // allow clicking on wrap to move handle
-  wrap.addEventListener('click', (e)=>{
-    updateFromClientX(e.clientX);
-  });
-
-  // touch-friendly: pointer events already cover touch
-  setPos(50);
-
-  // load images from data attributes if present (for dynamic switching)
-  const beforeSrc = wrap.dataset.before, afterSrc = wrap.dataset.after;
-  if(beforeSrc){ imgBefore.src = beforeSrc; }
-  if(afterSrc){ after.querySelector('img').src = afterSrc; }
-})();
-
-// ==== Email Service Setup (noop) ====
-function initEmailJS() { console.log('EmailJS disabled - using mailto fallback'); }
-
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  initEmailJS();
-  setupLazyLoading();
-});
-
-// Lazy loading setup (from script.js)
-function setupLazyLoading() {
-  const lazyImages = document.querySelectorAll('img[data-src]');
-  const lazyVideos = document.querySelectorAll('video[data-src]');
-  
-  const lazyLoadObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const element = entry.target;
-        
-        // Show loading state
-        element.classList.add('loading');
-        
-        // Load the actual content
-        if (element.tagName === 'IMG') {
-          const img = new Image();
-          img.onload = () => {
-            element.src = img.src;
-            element.classList.remove('loading');
-            element.classList.add('loaded');
-          };
-          img.src = element.dataset.src;
-        } else if (element.tagName === 'VIDEO') {
-          element.src = element.dataset.src;
-          element.load();
-          element.classList.remove('loading');
-          element.classList.add('loaded');
-        }
-        
-        // Stop observing after loading
-        lazyLoadObserver.unobserve(element);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '50px'
-  });
-  
-  // Start observing lazy elements
-  lazyImages.forEach(img => lazyLoadObserver.observe(img));
-  lazyVideos.forEach(video => lazyLoadObserver.observe(video));
 };
 
-// ==== simple contact form submit handler ====
-function submitForm(e){
-  e.preventDefault();
-  
-  // منع استخدام EmailJS نهائياً
-  if (typeof emailjs !== 'undefined') { emailjs = undefined; }
-  
-  const submitBtn = e.target.querySelector('button[type="submit"]');
-  const originalText = submitBtn.textContent;
-  
-  // تغيير نص الزر أثناء الإرسال
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'جاري الإرسال...';
-  
-  const name = document.getElementById('name').value || '';
-  const email = document.getElementById('email').value || '';
-  const message = document.getElementById('message').value || '';
-  
-  // التحقق من صحة البيانات
-  if (!name || !email || !message) {
-    showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalText;
-    return false;
-  }
-  
-  // إعداد معاملات الإيميل
-  const templateParams = {
-    from_name: name,
-    from_email: email,
-    message: message,
-    to_email: 'louai.karim2009@gmail.com',
-    subject: 'استفسار عن ترميم داخلي من ' + name
-  };
-  
-  // استخدام mailto مباشرة بدلاً من EmailJS لتجنب الأخطاء
-  console.log('Using mailto fallback for email sending');
-  showNotification('سيتم فتح برنامج الإيميل لإرسال الرسالة', 'info');
-  
-  const subject = encodeURIComponent('استفسار عن ترميم داخلي من ' + name);
-  const body = encodeURIComponent(`الاسم: ${name}\nالبريد الإلكتروني: ${email}\n\nالرسالة:\n${message}\n\n---\nتم إرسال هذه الرسالة من موقع ماستر ترميم`);
-  
-  // فتح برنامج الإيميل
-  const mailtoLink = `mailto:louai.karim2009@gmail.com?subject=${subject}&body=${body}`;
-  window.open(mailtoLink, '_blank');
-  
-  // إعادة تعيين النموذج بعد فترة قصيرة
-  setTimeout(() => {
-    document.getElementById('contactForm').reset();
-    showNotification('تم تحضير الرسالة! يرجى إرسالها من برنامج الإيميل', 'success');
-  }, 1000);
-  
-  submitBtn.disabled = false;
-  submitBtn.textContent = originalText;
-  
-  return false;
+const state = { lang: 'fi' };
+
+function setText(id, text){
+  const el = document.getElementById(id);
+  if(el) el.textContent = text;
 }
 
-// دالة إظهار الإشعارات
-function showNotification(message, type) {
-  const notification = document.createElement('div');
-  notification.className = `notification ${type}`;
-  notification.textContent = message;
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 600;
-    z-index: 10000;
-    max-width: 400px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    animation: slideIn 0.3s ease-out;
-    background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
-  `;
+function setHTML(id, html){
+  const el = document.getElementById(id);
+  if(el) el.innerHTML = html;
+}
+
+function render(lang){
+  const data = i18n[lang] || i18n.en;
+  state.lang = lang;
+
+  // direction
+  document.documentElement.lang = lang;
+  document.getElementById('siteRoot').setAttribute('dir', data.dir || 'ltr');
+  document.getElementById('siteRoot').style.direction = data.dir || 'ltr';
+
+  // header texts
+  setText('brandTitle', data.brandTitle);
+  setText('brandSubtitle', data.brandSubtitle);
+  setText('heroTitle', data.heroTitle);
+  setText('heroText', data.heroText);
+  setText('aboutTitle', data.aboutTitle);
+  setText('aboutText', data.aboutText);
+  setText('whyTitle', data.whyTitle);
   
-  if (!document.querySelector('#notification-styles')) {
-    const style = document.createElement('style');
-    style.id = 'notification-styles';
-    style.textContent = `
-      @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-      @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+  // Contact buttons
+  setText('contactBtn', data.contactBtn);
+  setText('contactBtnSidebar', data.contactBtnSidebar);
+  
+  // video section texts
+  setText('videoShowcaseTitle', data.videoShowcaseTitle);
+  setText('videoShowcaseDesc', data.videoShowcaseDesc);
+  setText('video1Title', data.video1Title);
+  setText('video1Desc', data.video1Desc);
+  setText('video2Title', data.video2Title);
+  setText('video2Desc', data.video2Desc);
+  setText('video3Title', data.video3Title);
+  setText('video3Desc', data.video3Desc);
+
+  // Testimonials section texts
+  setText('testimonialsTitle', data.testimonialsTitle);
+  setText('testimonialsDesc', data.testimonialsDesc);
+  setText('testimonial1Text', data.testimonial1Text);
+  setText('testimonial1Name', data.testimonial1Name);
+  setText('testimonial1Location', data.testimonial1Location);
+  setText('testimonial2Text', data.testimonial2Text);
+  setText('testimonial2Name', data.testimonial2Name);
+  setText('testimonial2Location', data.testimonial2Location);
+  setText('testimonial3Text', data.testimonial3Text);
+  setText('testimonial3Name', data.testimonial3Name);
+  setText('testimonial3Location', data.testimonial3Location);
+  setText('testimonial4Text', data.testimonial4Text);
+  setText('testimonial4Name', data.testimonial4Name);
+  setText('testimonial4Location', data.testimonial4Location);
+
+  // Footer texts
+  setText('footerContactTitle', data.footerContactTitle);
+  setText('footerLocation', data.footerLocation);
+  setText('footerEmail', data.footerEmail);
+  setText('footerPhone', data.footerPhone);
+  setText('footerServicesTitle', data.footerServicesTitle);
+  setText('footerAboutTitle', data.footerAboutTitle);
+  setText('footerRating', data.footerRating);
+  
+  // Footer services list
+  const footerServicesList = document.getElementById('footerServicesList');
+  if(footerServicesList && data.footerServicesList){
+    footerServicesList.innerHTML = '';
+    data.footerServicesList.forEach(service => {
+      const li = document.createElement('li');
+      li.textContent = service;
+      footerServicesList.appendChild(li);
+    });
+  }
+
+  // services grid
+  const servicesList = document.getElementById('servicesList');
+  servicesList.innerHTML = '';
+  
+  // Service icons mapping
+  const serviceIcons = [
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <line x1="3" y1="9" x2="21" y2="9"/>
+      <line x1="9" y1="21" x2="9" y2="9"/>
+    </svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+    </svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>`
+  ];
+  
+  (data.services || []).forEach((s, index)=>{
+    const card = document.createElement('div');
+    card.className = 'service-card';
+    
+    const iconSvg = serviceIcons[index] || serviceIcons[0];
+    const iconColor = index % 2 === 0 ? 'rgba(31,58,116,0.8)' : 'rgba(139,94,60,0.8)';
+    
+    card.innerHTML = `
+      <div class="service-icon" style="color: ${iconColor}">
+        ${iconSvg}
+      </div>
+      <div class="service-card-content">
+        <h4>${s.title}</h4>
+        <p>${s.text}</p>
+      </div>
     `;
-    document.head.appendChild(style);
-  }
-  
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease-out';
-    setTimeout(() => {
-      if (notification.parentNode) { notification.parentNode.removeChild(notification); }
-    }, 300);
-  }, 5000);
-}
-
-// ==== Video Before Renovation Enhancement (beforeRenovationVideo) ====
-document.addEventListener('DOMContentLoaded', function() {
-  const video = document.getElementById('beforeRenovationVideo');
-  
-  if (video) {
-    // تحديث مدة الفيديو في النص عند تحميل البيانات الوصفية
-    video.addEventListener('loadedmetadata', function() {
-      const duration = Math.floor(video.duration / 60);
-      const seconds = Math.floor(video.duration % 60);
-      const durationText = `${duration}:${seconds.toString().padStart(2, '0')}`;
-      
-      const durationSpan = document.querySelector('.video-stats span:last-child');
-      if (durationSpan) {
-        const currentLang = document.documentElement.lang || 'ar';
-        const durationLabels = {
-          ar: `مدة الفيديو: ${durationText} دقيقة`,
-          en: `Video duration: ${durationText} minutes`,
-          sv: `Videolängd: ${durationText} minuter`
-        };
-        durationSpan.innerHTML = `⏱️ <span data-ar="${durationLabels.ar}" data-en="${durationLabels.en}" data-sv="${durationLabels.sv}">${durationLabels[currentLang] || durationLabels.ar}</span>`;
-      }
-    });
-
-    // interactive effects
-    video.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.02)'; this.style.transition = 'transform 0.3s ease'; });
-    video.addEventListener('mouseleave', function() { this.style.transform = 'scale(1)'; });
-
-    video.addEventListener('play', function() { console.log('فيديو قبل الترميم: تم بدء التشغيل'); });
-    video.addEventListener('pause', function() { console.log('فيديو قبل الترميم: تم إيقاف التشغيل'); });
-    video.addEventListener('ended', function() { this.style.filter = 'brightness(0.8)'; setTimeout(() => { this.style.filter = 'brightness(1)'; }, 2000); });
-
-    // lazy-load video when visible
-    const videoContainer = document.querySelector('.video-before-container');
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          video.load(); // تحميل الفيديو عند ظهوره في المنطقة المرئية
-          videoObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    if (videoContainer) { videoObserver.observe(videoContainer); }
-
-    video.addEventListener('keydown', function(e) {
-      switch(e.key) {
-        case ' ': e.preventDefault(); if (video.paused) video.play(); else video.pause(); break;
-        case 'ArrowLeft': e.preventDefault(); video.currentTime = Math.max(0, video.currentTime - 10); break;
-        case 'ArrowRight': e.preventDefault(); video.currentTime = Math.min(video.duration, video.currentTime + 10); break;
-        case 'f': case 'F': e.preventDefault(); if (video.requestFullscreen) video.requestFullscreen(); break;
-      }
-    });
-
-    video.setAttribute('title', 'اضغط مسطرة المسافة للتشغيل/الإيقاف، الأسهم للتنقل، F للشاشة الكاملة');
-    video.setAttribute('tabindex', '0');
-  }
-});
-
-// ==== Logo image fallback helper (from script-clean.js) ====
-document.addEventListener('DOMContentLoaded', function() {
-  try {
-    const logoImg = document.querySelector('.header-logo img.company-logo');
-    if (!logoImg) return;
-    setTimeout(() => {
-      const failed = (!logoImg.complete) || (logoImg.naturalWidth === 0);
-      if (failed) {
-        const fallback = document.createElement('div');
-        fallback.className = 'logo-fallback';
-        fallback.setAttribute('aria-hidden', 'true');
-        fallback.innerHTML = '<div class="logo-emoji">🏠</div><div class="logo-title">ماستر ترميم</div>';
-        logoImg.parentNode.replaceChild(fallback, logoImg);
-      }
-    }, 80);
-  } catch (err) { console.warn('Logo fallback error', err); }
-});
-
-console.log('main.js (consolidated) loaded');
-
-/* === End script.js content === */
-
-
-/* === Begin video-controller.js content === */
-/**
- * نظام إدارة الفيديوهات التفاعلية (appended)
- */
-
-class VideoShowcase {
-    constructor() {
-        this.isPlaying = false;
-        this.currentTime = 0;
-        this.duration = 120; // مدتان دقيقتان
-        this.playbackRate = 1.0;
-        this.isSynced = true;
-        this.videoData = {
-            before: {
-                title: 'المنزل قبل الترميم',
-                description: 'حالة المنزل الأصلية قبل بدء أعمال الترميم',
-                scenes: [
-                    { time: 0, description: 'المدخل الرئيسي' },
-                    { time: 15, description: 'غرفة المعيشة' },
-                    { time: 30, description: 'المطبخ القديم' },
-                    { time: 45, description: 'الحمامات' },
-                    { time: 60, description: 'غرف النوم' },
-                    { time: 75, description: 'الأرضيات التالفة' },
-                    { time: 90, description: 'الجدران المتضررة' },
-                    { time: 105, description: 'النظرة العامة الختامية' }
-                ]
-            },
-            after: {
-                title: 'المنزل بعد الترميم',
-                description: 'النتيجة النهائية المذهلة بعد الترميم الشامل',
-                scenes: [
-                    { time: 0, description: 'المدخل الجديد الأنيق' },
-                    { time: 15, description: 'غرفة المعيشة العصرية' },
-                    { time: 30, description: 'المطبخ الحديث' },
-                    { time: 45, description: 'الحمامات المجددة' },
-                    { time: 60, description: 'غرف النوم المريحة' },
-                    { time: 75, description: 'الأرضيات الجديدة' },
-                    { time: 90, description: 'الجدران المدهونة' },
-                    { time: 105, description: 'التحول الكامل' }
-                ]
-            }
-        };
-        
-        this.init();
-    }
-    
-    init() {
-        this.bindEvents();
-        this.updateDisplay();
-        this.createSceneMarkers();
-    }
-    
-    bindEvents() {
-        // أزرار التحكم
-        document.getElementById('playBothBtn')?.addEventListener('click', () => this.play());
-        document.getElementById('pauseAllBtn')?.addEventListener('click', () => this.pause());
-        document.getElementById('syncVideosBtn')?.addEventListener('click', () => this.sync());
-        
-        // شريط التقدم التفاعلي
-        document.querySelector('.progress-bar')?.addEventListener('click', (e) => this.seekTo(e));
-        
-        // النقر على الفيديوهات
-        document.getElementById('beforeVideo')?.addEventListener('click', () => this.togglePlayPause());
-        document.getElementById('afterVideo')?.addEventListener('click', () => this.togglePlayPause());
-        
-        // اختصارات لوحة المفاتيح
-        document.addEventListener('keydown', (e) => this.handleKeyPress(e));
-    }
-    
-    play() {
-        if (!this.isPlaying) {
-            this.isPlaying = true;
-            this.updateUI();
-            this.startAnimation();
-            this.playbackTimer = setInterval(() => {
-                this.currentTime += 0.1;
-                if (this.currentTime >= this.duration) {
-                    this.currentTime = this.duration;
-                    this.pause();
-                }
-                this.updateDisplay();
-                this.updateScenes();
-            }, 100);
-        }
-    }
-    
-    pause() {
-        this.isPlaying = false;
-        this.updateUI();
-        this.stopAnimation();
-        if (this.playbackTimer) { clearInterval(this.playbackTimer); }
-    }
-    
-    togglePlayPause() { if (this.isPlaying) this.pause(); else this.play(); }
-    
-    seekTo(event) { const progressBar = event.currentTarget; const rect = progressBar.getBoundingClientRect(); const clickX = event.clientX - rect.left; const percentage = clickX / rect.width; this.currentTime = percentage * this.duration; this.updateDisplay(); this.updateScenes(); }
-    
-    sync() { this.showSyncEffect(); if (this.isPlaying) { this.currentTime = Math.floor(this.currentTime); this.updateDisplay(); } }
-    
-    updateDisplay() {
-        const percentage = (this.currentTime / this.duration) * 100;
-        const progressFill = document.getElementById('progressFill'); if (progressFill) { progressFill.style.width = percentage + '%'; }
-        const currentTimeEl = document.getElementById('currentTime'); const totalTimeEl = document.getElementById('totalTime');
-        if (currentTimeEl) currentTimeEl.textContent = this.formatTime(this.currentTime);
-        if (totalTimeEl) totalTimeEl.textContent = this.formatTime(this.duration);
-    }
-    
-    updateUI() {
-        const playBtn = document.getElementById('playBothBtn'); const pauseBtn = document.getElementById('pauseAllBtn');
-        if (playBtn) playBtn.disabled = this.isPlaying; if (pauseBtn) pauseBtn.disabled = !this.isPlaying;
-        const beforeVideo = document.getElementById('beforeVideo'); const afterVideo = document.getElementById('afterVideo');
-        if (beforeVideo && afterVideo) {
-            if (this.isPlaying) { beforeVideo.classList.add('playing'); afterVideo.classList.add('playing'); } else { beforeVideo.classList.remove('playing'); afterVideo.classList.remove('playing'); }
-        }
-    }
-    
-    startAnimation() { const beforeVideo = document.getElementById('beforeVideo'); const afterVideo = document.getElementById('afterVideo'); if (beforeVideo && afterVideo) { beforeVideo.style.animation = 'videoPlaying 2s ease-in-out infinite'; afterVideo.style.animation = 'videoPlaying 2s ease-in-out infinite'; } }
-    
-    stopAnimation() { const beforeVideo = document.getElementById('beforeVideo'); const afterVideo = document.getElementById('afterVideo'); if (beforeVideo && afterVideo) { beforeVideo.style.animation = ''; afterVideo.style.animation = ''; } }
-    
-    showSyncEffect() { const syncBtn = document.getElementById('syncVideosBtn'); if (syncBtn) { const originalText = syncBtn.textContent; syncBtn.textContent = '🔄 تمت المزامنة!'; syncBtn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)'; setTimeout(() => { syncBtn.textContent = originalText; syncBtn.style.background = ''; }, 2000); } }
-    
-    updateScenes() { const currentScene = this.getCurrentScene(); if (currentScene) this.displaySceneInfo(currentScene); }
-    
-    getCurrentScene() {
-        const beforeScenes = this.videoData.before.scenes; const afterScenes = this.videoData.after.scenes;
-        let currentBeforeScene = null; let currentAfterScene = null;
-        for (let i = beforeScenes.length - 1; i >= 0; i--) { if (this.currentTime >= beforeScenes[i].time) { currentBeforeScene = beforeScenes[i]; break; } }
-        for (let i = afterScenes.length - 1; i >= 0; i--) { if (this.currentTime >= afterScenes[i].time) { currentAfterScene = afterScenes[i]; break; } }
-        return { before: currentBeforeScene, after: currentAfterScene };
-    }
-    
-    displaySceneInfo(scene) { const sceneInfoEl = document.getElementById('sceneInfo'); if (sceneInfoEl && scene.before && scene.after) { sceneInfoEl.innerHTML = `<div class="scene-display"><div class="scene-before"><strong>قبل:</strong> ${scene.before.description}</div><div class="scene-after"><strong>بعد:</strong> ${scene.after.description}</div></div>`; } }
-    
-    createSceneMarkers() { const progressBar = document.querySelector('.progress-bar'); if (!progressBar) return; this.videoData.before.scenes.forEach((scene) => { const marker = document.createElement('div'); marker.className = 'scene-marker'; marker.style.cssText = `position: absolute; left: ${(scene.time / this.duration) * 100}%; top: 0; width: 2px; height: 100%; background: #fff; opacity: 0.7; cursor: pointer; z-index: 10;`; marker.addEventListener('click', (e) => { e.stopPropagation(); this.currentTime = scene.time; this.updateDisplay(); this.updateScenes(); }); marker.title = scene.description; progressBar.appendChild(marker); }); }
-    
-    handleKeyPress(event) { switch(event.code) { case 'Space': event.preventDefault(); this.togglePlayPause(); break; case 'ArrowLeft': event.preventDefault(); this.currentTime = Math.max(0, this.currentTime - 5); this.updateDisplay(); break; case 'ArrowRight': event.preventDefault(); this.currentTime = Math.min(this.duration, this.currentTime + 5); this.updateDisplay(); break; case 'Digit0': event.preventDefault(); this.currentTime = 0; this.updateDisplay(); break; } }
-    
-    formatTime(seconds) { const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs.toString().padStart(2, '0')}`; }
-    
-    setPlaybackRate(rate) { this.playbackRate = rate; if (this.isPlaying) { this.pause(); this.play(); } }
-    
-    jumpToScene(sceneIndex) { if (this.videoData.before.scenes[sceneIndex]) { this.currentTime = this.videoData.before.scenes[sceneIndex].time; this.updateDisplay(); this.updateScenes(); } }
-    
-    toggleFullscreen() { const videoContainer = document.getElementById('videoShowcase'); if (videoContainer) { if (document.fullscreenElement) { document.exitFullscreen(); } else { videoContainer.requestFullscreen(); } } }
-    
-    exportProgress() { return { currentTime: this.currentTime, isPlaying: this.isPlaying, playbackRate: this.playbackRate }; }
-    
-    importProgress(data) { this.currentTime = data.currentTime || 0; this.playbackRate = data.playbackRate || 1.0; this.updateDisplay(); if (data.isPlaying && !this.isPlaying) this.play(); }
-}
-
-const videoStyles = `
-    @keyframes videoPlaying { 0%, 100% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.3); transform: scale(1); } 50% { box-shadow: 0 0 30px rgba(52, 152, 219, 0.6); transform: scale(1.02); } }
-    .playing { border: 3px solid #3498db !important; animation: videoPlaying 2s ease-in-out infinite !important; }
-    .scene-marker:hover { background: #3498db !important; width: 4px !important; opacity: 1 !important; }
-    .scene-display { display: flex; justify-content: space-between; gap: 20px; padding: 10px; background: rgba(52, 152, 219, 0.1); border-radius: 8px; margin-top: 10px; }
-    .scene-before, .scene-after { flex: 1; padding: 8px; border-radius: 4px; }
-    .scene-before { background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; }
-    .scene-after { background: rgba(39, 174, 96, 0.1); border-left: 3px solid #27ae60; }
-`;
-
-if (!document.getElementById('video-showcase-styles')) {
-    const styleSheet = document.createElement('style');
-    styleSheet.id = 'video-showcase-styles';
-    styleSheet.textContent = videoStyles;
-    document.head.appendChild(styleSheet);
-}
-
-window.VideoShowcase = VideoShowcase;
-
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('videoShowcase')) {
-        // Instantiate only if not already created
-        if (!window.videoShowcase) window.videoShowcase = new VideoShowcase();
-    }
-});
-
-/* === End video-controller.js content === */
-
-// ===== Header: mobile nav (moved from inline) + sticky behavior =====
-document.addEventListener('DOMContentLoaded', function() {
-  var navToggle = document.querySelector('.nav-toggle');
-  var mainNav = document.getElementById('mainNav');
-  var header = document.querySelector('header');
-
-  // Mobile nav/backdrop logic
-  if (navToggle && mainNav) {
-    var backdrop = document.querySelector('.nav-backdrop');
-    if (!backdrop) {
-      backdrop = document.createElement('div');
-      backdrop.className = 'nav-backdrop';
-      document.body.appendChild(backdrop);
-    }
-
-    function openNav() {
-      navToggle.setAttribute('aria-expanded', 'true');
-      mainNav.classList.add('open');
-      backdrop.classList.add('visible');
-      document.documentElement.style.overflow = 'hidden';
-    }
-
-    function closeNav() {
-      navToggle.setAttribute('aria-expanded', 'false');
-      mainNav.classList.remove('open');
-      backdrop.classList.remove('visible');
-      document.documentElement.style.overflow = '';
-    }
-
-    navToggle.addEventListener('click', function(e) {
-      var expanded = this.getAttribute('aria-expanded') === 'true';
-      if (expanded) closeNav(); else openNav();
-    });
-
-    backdrop.addEventListener('click', closeNav);
-
-    mainNav.addEventListener('click', function(e) {
-      if (e.target.tagName && e.target.tagName.toLowerCase() === 'a') closeNav();
-    });
-
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
-  }
-
-  // Sticky header: add .scrolled when scrolled beyond threshold
-  if (header) {
-    var onScroll = function() {
-      if (window.scrollY > 60) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  // Measure header height and expose it via CSS variable --header-height
-  // This prevents the sticky header from overlapping the main content.
-  function updateHeaderHeight() {
-    try {
-      var h = header ? header.getBoundingClientRect().height : 0;
-      document.documentElement.style.setProperty('--header-height', h + 'px');
-    } catch (err) {
-      console.warn('updateHeaderHeight error', err);
-    }
-  }
-
-  // Call once now and on resize/scroll (debounced on resize)
-  updateHeaderHeight();
-  var resizeTimer = null;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateHeaderHeight, 120);
+    servicesList.appendChild(card);
   });
 
-  // Update when scroll toggles the scrolled class (so height changes are captured)
-  if (header) {
-    var _origOnScroll = onScroll;
-    window.removeEventListener('scroll', onScroll);
-    onScroll = function() {
-      if (window.scrollY > 60) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-      // measure after class toggle (use rAF to avoid layout thrash)
-      window.requestAnimationFrame(updateHeaderHeight);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-
-  // Also update height on window load (images/fonts may change size after DOMContentLoaded)
-  window.addEventListener('load', function() {
-    // small timeout to allow late layout
-    setTimeout(updateHeaderHeight, 80);
+  // why list
+  const whyList = document.getElementById('whyList');
+  whyList.innerHTML = '';
+  (data.whyList || []).forEach(it=>{
+    const li = document.createElement('li');
+    li.textContent = it;
+    whyList.appendChild(li);
   });
 
-  // If the header contains images that load later, listen for their load events
-  try {
-    if (header) {
-      var headerImgs = header.querySelectorAll('img');
-      headerImgs.forEach(function(img) {
-        if (!img.complete) img.addEventListener('load', updateHeaderHeight);
-      });
-    }
-  } catch (err) { /* ignore */ }
+  // footer year and copyright
+  const year = new Date().getFullYear();
+  setText('year', year);
+  setText('footerCopyright', (data.footerCopyright || '').replace('{year}', year));
+  setText('footerDeveloped', data.footerDeveloped);
 
-  // Watch for DOM changes inside header that may affect its size (e.g. language switcher opening)
-  try {
-    if (header && window.MutationObserver) {
-      var mo = new MutationObserver(function(mutations) {
-        // debounce multiple mutations
-        if (mo._timer) clearTimeout(mo._timer);
-        mo._timer = setTimeout(function() { updateHeaderHeight(); }, 60);
-      });
-      mo.observe(header, { attributes: true, childList: true, subtree: true });
-    }
-  } catch (err) { /* ignore */ }
+  // lang buttons active
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
 
-  // Fallback re-measure after a short delay in case dynamic fonts or late content adjust sizes
-  setTimeout(updateHeaderHeight, 300);
+  // font-family switch for arabic
+  if(data.dir === 'rtl'){
+    document.body.style.fontFamily = 'Cairo, Inter, sans-serif';
+  } else {
+    document.body.style.fontFamily = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial';
+  }
+}
 
-  // Ensure language-switcher toggling works on mobile (compact)
-  var langSwitcher = document.querySelector('.language-switcher');
-  if (langSwitcher) {
-    langSwitcher.addEventListener('click', function(e){
-      var clicked = e.target.closest('.lang-btn');
-      if (!clicked) return;
-      if (clicked.classList.contains('active')) {
-        langSwitcher.classList.toggle('open');
-        e.stopPropagation();
-      } else {
-        langSwitcher.classList.remove('open');
-      }
-    });
-    // close when clicking outside (already in other handlers but safe)
-    document.addEventListener('click', function(e){ if (!e.target.closest('.language-switcher')) langSwitcher.classList.remove('open'); });
+// initial render
+render(state.lang);
+
+// language buttons events
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> render(btn.dataset.lang) );
+});
+
+// contact buttons open whatsapp / mail
+function openContact(){
+  const phone = '+46761429023'; // example - replace with your number
+  const wa = 'https://wa.me/' + phone.replace(/[^0-9]/g,'');
+  window.open(wa, '_blank');
+}
+document.getElementById('contactBtn').addEventListener('click', (e)=>{ e.preventDefault(); openContact(); });
+document.getElementById('contactBtnSidebar').addEventListener('click', (e)=>{ e.preventDefault(); openContact(); });
+
+// Keyboard quick language (Alt+1/2/3)
+window.addEventListener('keydown', (e)=>{
+  if(e.altKey && !e.ctrlKey && !e.metaKey){
+    if(e.key === '1') render('ar');
+    if(e.key === '2') render('en');
+    if(e.key === '3') render('sv');
   }
 });
+
+// small: fill initial why list if empty
+if(!document.getElementById('whyList').children.length){
+  const defaultWhy = i18n[state.lang].whyList || [];
+  defaultWhy.forEach(it=>{
+    const li = document.createElement('li');
+    li.textContent = it;
+    document.getElementById('whyList').appendChild(li);
+  });
+}
