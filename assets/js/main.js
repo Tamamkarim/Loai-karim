@@ -15,7 +15,7 @@ const i18n = {
       {title:"Projektinhallinta", text:"Suunnittelusta luovutukseen — aikataulut ja laadunvarmistus."}
     ],
     aboutTitle: "Tietoa meistä",
-    aboutText: "Nimeni on [Nimesi]. Erikoistun kodin remontointiin vahvalla Ruotsissa kehitetyllä kokemuksella. Panostan yksityiskohtiin, turvallisuuteen ja moderniin muotoiluun.",
+    aboutText: "Nimeni on Louai Karim. Erikoistun kodin remontointiin vahvalla Ruotsissa kehitetyllä kokemuksella. Panostan yksityiskohtiin, turvallisuuteen ja moderniin muotoiluun.",
     contactBtn: "Ota yhteyttä",
     contactBtnSidebar: "Ota yhteyttä WhatsAppissa",
     whyTitle: "Miksi valita meidät?",
@@ -48,13 +48,30 @@ const i18n = {
     footerContactTitle: "Ota yhteyttä",
     footerLocation: "Ruotsi",
     footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "023 429 761 46+",
+    footerPhone: "+46 76 142 9023",
     footerServicesTitle: "Palvelumme",
     footerServicesList: ["✓ Keittiöremontti", "✓ Seinämaalaus", "✓ Lattia-asennus"],
     footerAboutTitle: "Historiamme",
     footerRating: "Arvio 4/5 asiakkailtamme",
     footerCopyright: "© {year} Kaikki oikeudet pidätetään — Master Remontointi",
-    footerDeveloped: "Kehitetty 💗 Ruotsissa"
+    footerDeveloped: "Kehitetty 💗 Ruotsissa",
+    // Gallery Before/After
+    galleryTitle: "Ennen / Jälkeen",
+    beforeText: "Ennen",
+    afterText: "Jälkeen",
+    // Navigation
+    navHome: "Kotiin",
+    navAbout: "Meistä",
+    navServices: "Palvelut",
+    navGallery: "Viitteet",
+    navTestimonials: "Ota yhteyttä",
+    navContact: "Ota meihin yhteyttä sähköpostitse",
+    // Services Dropdown
+    dropService1: "Keittiöremontti",
+    dropService2: "Kylpyhuoneen uusiminen",
+    dropService3: "Keittiön uusiminen",
+    dropService4: "Maalaustoimeksianto",
+    dropService5: "Tapetti"
   },
   en: {
     dir: "ltr",
@@ -105,13 +122,30 @@ const i18n = {
     footerContactTitle: "Contact Us",
     footerLocation: "Sweden",
     footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "023 429 761 46+",
+    footerPhone: "+46 76 142 9023",
     footerServicesTitle: "Our Services",
     footerServicesList: ["✓ Kitchen Renovation", "✓ Wall Painting", "✓ Floor Installation"],
     footerAboutTitle: "Our History",
     footerRating: "Rating 4/5 from our clients",
     footerCopyright: "© {year} All rights reserved — Master Renovation",
-    footerDeveloped: "Developed with 💗 in Sweden"
+    footerDeveloped: "Developed with 💗 in Sweden",
+    // Gallery Before/After
+    galleryTitle: "Before / After",
+    beforeText: "Before",
+    afterText: "After",
+    // Navigation
+    navHome: "Home",
+    navAbout: "About Us",
+    navServices: "Services",
+    navGallery: "References",
+    navTestimonials: "Contact Us",
+    navContact: "Email Us",
+    // Services Dropdown
+    dropService1: "Kitchen Renovation",
+    dropService2: "Bathroom Renewal",
+    dropService3: "Kitchen Renewal",
+    dropService4: "Painting Service",
+    dropService5: "Wallpaper"
   },
   sv: {
     dir: "ltr",
@@ -161,13 +195,30 @@ const i18n = {
     footerContactTitle: "Kontakta oss",
     footerLocation: "Sverige",
     footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "023 429 761 46+",
+    footerPhone: "076-142 90 23",
     footerServicesTitle: "Våra tjänster",
     footerServicesList: ["✓ Köksrenovering", "✓ Väggmålning", "✓ Golvinstallation"],
     footerAboutTitle: "Vår historia",
     footerRating: "Betyg 4/5 från våra kunder",
     footerCopyright: "© {year} Alla rättigheter förbehållna — Mästare Renovering",
-    footerDeveloped: "Utvecklad med 💗 i Sverige"
+    footerDeveloped: "Utvecklad med 💗 i Sverige",
+    // Gallery Before/After
+    galleryTitle: "Före / Efter",
+    beforeText: "Före",
+    afterText: "Efter",
+    // Navigation
+    navHome: "Hem",
+    navAbout: "Om oss",
+    navServices: "Tjänster",
+    navGallery: "Referenser",
+    navTestimonials: "Kontakta oss",
+    navContact: "Kontakta oss via e-post",
+    // Services Dropdown
+    dropService1: "Köksrenovering",
+    dropService2: "Badrums renovering",
+    dropService3: "Köks renovering",
+    dropService4: "Målerij tjänst",
+    dropService5: "Tapet"
   },
   ar: {
     dir: "rtl",
@@ -217,13 +268,29 @@ const i18n = {
     footerContactTitle: "تواصل معنا",
     footerLocation: "السويد",
     footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "023 429 761 46+",
+    footerPhone: "46+ 023 429 761",
     footerServicesTitle: "خدماتنا",
     footerServicesList: ["✓ ترميم المطابخ", "✓ دهان الجدران", "✓ تركيب الأرضيات"],
     footerAboutTitle: "تاريخنا",
     footerRating: "تقييم 4/5 من عملائنا",
     footerCopyright: "© {year} حقوق محفوظة — ماستر ترميم",
-    footerDeveloped: "تم التطوير 💗 في السويد"
+    footerDeveloped: "تم التطوير 💗 في السويد",
+    // Gallery Before/After
+    galleryTitle: "قبل / بعد",
+    beforeText: "قبل",
+    afterText: "بعد",
+    // Navigation
+    navHome: "بيتنا",
+   
+    navServices: "خدمات",
+    navGallery: "مراجع",
+    navTestimonials: "اتصل بنا",
+    navContact: "راسلنا عبر البريد الإلكتروني",
+    // Services Dropdown
+    dropService1: "ترميم المطابخ",
+    dropService3: "تجديد المطبخ",
+    dropService4: "خدمة الطلاء",
+    dropService5: "ورق الجدران"
   }
 };
 
@@ -286,6 +353,26 @@ function render(lang){
   setText('testimonial4Text', data.testimonial4Text);
   setText('testimonial4Name', data.testimonial4Name);
   setText('testimonial4Location', data.testimonial4Location);
+
+  // Gallery texts (Before/After)
+  setText('galleryTitle', data.galleryTitle);
+  document.querySelectorAll('.figcaption-before').forEach(el => el.textContent = data.beforeText);
+  document.querySelectorAll('.figcaption-after').forEach(el => el.textContent = data.afterText);
+
+  // Navigation texts
+  setText('navHome', data.navHome);
+  setText('navAbout', data.navAbout);
+  setText('navServices', data.navServices);
+  setText('navGallery', data.navGallery);
+  setText('navTestimonials', data.navTestimonials);
+  setText('navContact', data.navContact);
+
+  // Services Dropdown
+  setText('dropService1', data.dropService1);
+  setText('dropService2', data.dropService2);
+  setText('dropService3', data.dropService3);
+  setText('dropService4', data.dropService4);
+  setText('dropService5', data.dropService5);
 
   // Footer texts
   setText('footerContactTitle', data.footerContactTitle);
@@ -429,3 +516,198 @@ if(!document.getElementById('whyList').children.length){
     document.getElementById('whyList').appendChild(li);
   });
 }
+
+// Service Modal Functionality
+const serviceData = {
+  kitchen: {
+    ar: {
+      title: "المطبخ هو قلب المنزل",
+      description: "، ندرك ويعتبر المطبخ قلب المنزل وجزءاً لا يتجزأ من حياتنا اليومية. باختيارنا لتجديد مطبخك، كن على ثقة بأننا سنأخذ رغباتك واحتياجاتك الشخصية في الاعتبار لنشيئ بيئة مطبخ فريدة وشخصية.\n\nمع، ستحصل على عمل على الجودة، ومواد محتارة بعناية، وتركيب احترافي. يرشدك خبراء خلال العملية بأكملها، من التصميم واختيار المواد حتى التنفيذ، لضمان أن تتجاوز النتيجة توقعاتك.",
+      features: [
+        "تصميم مطبخ جميل وعملي يلبي احتياجاتك",
+        " ذو خبرة وموثوقية",
+        "من التصميم واختيار المواد حتى التنفيذ",
+        "ضمان أن تتجاوز النتيجة توقعاتك"
+      ],
+      image: "assets/images/projects/lataus3.jpg"
+    },
+    en: {
+      title: "Kitchen Renovation in Östersund",
+      description: "To successfully renovate your kitchen in Östersund, it is essential to engage experts specialized in this field. At Odéns Byggservice, we understand the importance of designing a beautiful and functional kitchen that meets your needs and desires.\n\nBy choosing us at  for your kitchen renovation in Östersund, you can be confident that you are working with experienced and reliable experts. We have extensive experience in this field and have completed many successful renovation projects.",
+      features: [
+        "Beautiful and functional kitchen design that meets your needs",
+        "Experienced and reliable experts",
+        "From design and material selection to implementation",
+        "Guarantee that the result exceeds your expectations"
+      ],
+      image: "assets/images/projects/lataus3.jpg"
+    },
+    sv: {
+      title: "Köksrenovering i Östersund",
+      description: "För att lyckas med din köksrenovering i Östersund är det nödvändigt att anlita experter som är specialiserade inom området. På Odéns Byggservice förstår vi vikten av att designa ett vackert och funktionellt kök som uppfyller dina behov och önskemål.\n\nGenom att välja oss på Odéns för din köksrenovering i Östersund kan du vara säker på att du samarbetar med erfarna och pålitliga experter. Vi har omfattande erfarenhet inom området och har genomfört många framgångsrika renoveringsprojekt.",
+      features: [
+        "Vackert och funktionellt kök design som uppfyller dina behov",
+        "Erfarna och pålitliga experter",
+        "Från design och materialval till genomförande",
+        "Garanti att resultatet överträffar dina förväntningar"
+      ],
+      image: "assets/images/projects/lataus3.jpg"
+    },
+    fi: {
+      title: "Keittiöremontti Östersundissa",
+      description: "Jotta keittiöremonttisi onnistuisi Östersundissa, on tärkeää käyttää alan asiantuntijoita. Odéns Byggservicellä ymmärrämme kauniin ja toimivan keittiön suunnittelun tärkeyden, joka vastaa tarpeisiisi ja toiveisiisi.\n\nValitsemalla meidät Odénsillä keittiöremonttiisi Östersundissa, voit olla varma, että työskentelet kokeneiden ja luotettavien asiantuntijoiden kanssa. Meillä on laaja kokemus alalta ja olemme toteuttaneet monia onnistuneita remonttiprojekteja.",
+      features: [
+        "Kaunis ja toimiva keittiösuunnittelu, joka vastaa tarpeitasi",
+        "Kokeneet ja luotettavat asiantuntijat",
+        "Suunnittelusta ja materiaalivalinnasta toteutukseen",
+        "Takuu siitä, että tulos ylittää odotuksesi"
+      ],
+      image: "assets/images/projects/lataus3.jpg"
+    }
+  },
+  painting: {
+    ar: {
+      title: "خدمة الطلاء المحترفة",
+      description: "نقدم خدمات طلاء احترافية عالية الجودة لمنزلك أو مكتبك. نستخدم أفضل المواد والتقنيات الحديثة لضمان نتائج مثالية تدوم طويلاً.",
+      features: [
+        "استخدام دهانات أوروبية عالية الجودة",
+        "تحضير السطح بشكل احترافي",
+        "تشطيبات حديثة ومتينة",
+        "أسعار تنافسية وشفافة"
+      ],
+      image: "assets/images/projects/lataus5.jpg"
+    },
+    en: {
+      title: "Professional Painting Service",
+      description: "We offer high-quality professional painting services for your home or office. We use the best materials and modern techniques to ensure perfect results that last.",
+      features: [
+        "Use of high-quality European paints",
+        "Professional surface preparation",
+        "Modern and durable finishes",
+        "Competitive and transparent pricing"
+      ],
+      image: "assets/images/projects/lataus5.jpg"
+    },
+    sv: {
+      title: "Professionell Målningstjänst",
+      description: "Vi erbjuder högkvalitativa professionella målningstjänster för ditt hem eller kontor. Vi använder de bästa materialen och moderna tekniker för att säkerställa perfekta resultat som varar.",
+      features: [
+        "Användning av högkvalitativa europeiska färger",
+        "Professionell ytberedning",
+        "Moderna och hållbara ytbehandlingar",
+        "Konkurrenskraftiga och transparenta priser"
+      ],
+      image: "assets/images/projects/lataus5.jpg"
+    },
+    fi: {
+      title: "Ammattitaitoinen Maalauspalvelu",
+      description: "Tarjoamme korkealaatuisia ammattimaisia maalauspalveluita kotiisi tai toimistoosi. Käytämme parhaita materiaaleja ja moderneja tekniikoita varmistaaksemme täydelliset ja kestävät tulokset.",
+      features: [
+        "Korkealaatuisten eurooppalaisten maalien käyttö",
+        "Ammattimainen pinnan valmistelu",
+        "Modernit ja kestävät viimeistelyt",
+        "Kilpailukykyiset ja läpinäkyvät hinnat"
+      ],
+      image: "assets/images/projects/lataus5.jpg"
+    }
+  },
+  wallpaper: {
+    ar: {
+      title: "تركيب ورق الجدران",
+      description: "خدمة تركيب ورق الجدران الاحترافية لإضفاء لمسة جمالية فريدة على منزلك. نعمل مع أفضل أنواع ورق الجدران ونضمن تركيباً مثالياً.",
+      features: [
+        "مجموعة واسعة من التصاميم والأنماط",
+        "تركيب دقيق واحترافي",
+        "استشارات تصميم مجانية",
+        "ضمان على العمل والمواد"
+      ],
+      image: "assets/images/projects/lataus4.jpg"
+    },
+    en: {
+      title: "Wallpaper Installation",
+      description: "Professional wallpaper installation service to add a unique aesthetic touch to your home. We work with the best types of wallpaper and ensure perfect installation.",
+      features: [
+        "Wide range of designs and patterns",
+        "Precise and professional installation",
+        "Free design consultations",
+        "Warranty on work and materials"
+      ],
+      image: "assets/images/projects/lataus4.jpg"
+    },
+    sv: {
+      title: "Tapetsering",
+      description: "Professionell tapetstjänst för att ge ditt hem en unik estetisk touch. Vi arbetar med de bästa tapeterna och garanterar perfekt installation.",
+      features: [
+        "Brett utbud av designer och mönster",
+        "Precis och professionell installation",
+        "Gratis designkonsultationer",
+        "Garanti på arbete och material"
+      ],
+      image: "assets/images/projects/lataus4.jpg"
+    },
+    fi: {
+      title: "Tapetointitpalvelu",
+      description: "Ammattimainen tapetointipalvelu, joka tuo ainutlaatuisen esteettisen kosketuksen kotiisi. Työskentelemme parhaiden tapettien kanssa ja takaamme täydellisen asennuksen.",
+      features: [
+        "Laaja valikoima malleja ja kuvioita",
+        "Tarkka ja ammattimainen asennus",
+        "Ilmaiset suunnittelukonsultaatiot",
+        "Takuu työstä ja materiaaleista"
+      ],
+      image: "assets/images/projects/lataus4.jpg"
+    }
+  }
+};
+
+const modal = document.getElementById('serviceModal');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalContactBtn = document.getElementById('modalContactBtn');
+
+function openServiceModal(serviceType) {
+  const lang = state.lang;
+  const data = serviceData[serviceType][lang];
+  
+  if (!data) return;
+  
+  document.getElementById('modalServiceTitle').textContent = data.title;
+  document.getElementById('modalServiceDescription').textContent = data.description;
+  document.getElementById('modalServiceImage').src = data.image;
+  
+  const featuresContainer = document.getElementById('modalServiceFeatures');
+  featuresContainer.innerHTML = '';
+  data.features.forEach(feature => {
+    const div = document.createElement('div');
+    div.className = 'modal-feature-item';
+    div.textContent = feature;
+    featuresContainer.appendChild(div);
+  });
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeServiceModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Event listeners for service items
+document.querySelectorAll('[data-service]').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const serviceType = e.currentTarget.dataset.service;
+    openServiceModal(serviceType);
+  });
+});
+
+modalClose.addEventListener('click', closeServiceModal);
+modalOverlay.addEventListener('click', closeServiceModal);
+modalContactBtn.addEventListener('click', openContact);
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    closeServiceModal();
+  }
+});
