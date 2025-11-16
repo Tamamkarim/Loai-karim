@@ -711,3 +711,37 @@ document.addEventListener('keydown', (e) => {
     closeServiceModal();
   }
 });
+
+// Mobile Navigation Enhancement
+// Make dropdown work with click/tap on mobile
+document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+  const dropdownLink = dropdown.querySelector('.nav-link');
+  
+  if (dropdownLink) {
+    dropdownLink.addEventListener('click', (e) => {
+      // Only prevent default and toggle on mobile
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        
+        // Close other dropdowns
+        document.querySelectorAll('.nav-dropdown').forEach(other => {
+          if (other !== dropdown) {
+            other.classList.remove('active');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+      }
+    });
+  }
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  }
+});
