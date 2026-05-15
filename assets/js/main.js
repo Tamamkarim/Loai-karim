@@ -1,78 +1,5 @@
 /* Multi-language content (keeps previous translations, adjusted lines) */
 const i18n = {
-  fi: {
-    dir: "ltr",
-    brandTitle: "LK Renovation",
-    brandSubtitle: "Kodin remontointi ja sisustus — Ruotsin kokemus",
-    heroTitle: "Ammattitaitoista kodin remontointia ja sisustusta",
-    heroText: "Muutamme kodit toimiviksi ja kauniiksi tiloiksi — keittiöt, lattiat, maalaus, sähkötyöt ja kattovalaistus.",
-    services: [
-      {title:"Keittiöremontti", text:"Suunnittelu ja toteutus: kaapistot, tasot, putkityöt ja viimeistely."},
-      {title:"Lattiat", text:"Laadukas asennus: parketti, laminaatti, vinyyli."},
-      {title:"Seinämaalaus", text:"Kestävät eurooppalaiset maalit ja modernit pinnat."},
-      {title:"Sähkötyöt", text:"Turvalliset päivitykset ja modernit ratkaisut."},
-      {title:"Kattovalaistus", text:"Räätälöidyt alasvalot ja koristevalaistus."},
-      {title:"Projektinhallinta", text:"Suunnittelusta luovutukseen — aikataulut ja laadunvarmistus."}
-    ],
-    aboutTitle: "Tietoa meistä",
-    aboutText: "Nimeni on Louai Karim. Erikoistun kodin remontointiin vahvalla Ruotsissa kehitetyllä kokemuksella. Panostan yksityiskohtiin, turvallisuuteen ja moderniin muotoiluun.",
-    contactBtn: "Ota yhteyttä",
-    contactBtnSidebar: "Ota yhteyttä WhatsAppissa",
-    whyTitle: "Miksi valita meidät?",
-    whyList: ["Ruotsalaiset standardit","Läpinäkyvä hinnoittelu","Laadukkaat materiaalit","Nopea viestintä"],
-    footer: "© {year} LK Renovation — Kaikki oikeudet pidätetään",
-    videoShowcaseTitle: "Katso projektimme",
-    videoShowcaseDesc: "Selaa videoita nähdäksesi työn laadun",
-    video1Title: "Työn alla",
-    video1Desc: "Työvaiheet ja toteutus",
-    video2Title: "Jälkeen",
-    video2Desc: "Lopputulos ja viimeistely",
-    video3Title: "Jälkeen",
-    video3Desc: "Uusi ilme remontin jälkeen",
-    // Testimonials
-    testimonialsTitle: "Mitä asiakkaamme sanovat",
-    testimonialsDesc: "Asiakkaidemme arviot",
-    testimonial1Text: "Loistavaa ja ammattimaista työtä! Keittiöni remontoitiin ammattitaidolla ja aikataulun mukaan. Tulos ylitti odotukseni.",
-    testimonial1Name: "Ahmed Al-Saeed",
-    testimonial1Location: "Stenungsund",
-    testimonial2Text: "Erinomainen palvelu ja kohtuulliset hinnat. Ammattitaitoinen työryhmä ja korkealaatuiset materiaalit. Suosittelen tätä yritystä.",
-    testimonial2Name: "Fatima Omar",
-    testimonial2Location: "Ruotsi",
-    testimonial3Text: "Kotini täysin uusittu. Tarkka työ ja oikea-aikainen toimitus. Kiitos tästä upeasta saavutuksesta.",
-    testimonial3Name: "Abdullah",
-    testimonial3Location: "Örebro",
-    testimonial4Text: "Paras remontointiyritys, jonka kanssa olen työskennellyt. Luotettavuus aikatauluissa ja korkea laatu tekivät minusta vakioasiakkaan.",
-    testimonial4Name: "Ahmed Karim",
-    testimonial4Location: "Helsinki",
-    // Footer
-    footerContactTitle: "Ota yhteyttä",
-    footerLocation: "Ruotsi",
-    footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "+46 76 142 9023",
-    footerServicesTitle: "Palvelumme",
-    footerServicesList: ["✓ Keittiöremontti", "✓ Seinämaalaus", "✓ Lattia-asennus"],
-    footerAboutTitle: "Historiamme",
-    footerRating: "Arvio 4/5 asiakkailtamme",
-    footerCopyright: "© {year} Kaikki oikeudet pidätetään — Master Remontointi",
-    footerDeveloped: "Kehitetty 💗 Ruotsissa",
-    // Gallery Before/After
-    galleryTitle: "Ennen / Jälkeen",
-    beforeText: "Ennen",
-    afterText: "Jälkeen",
-    // Navigation
-    navHome: "Kotiin",
-    navAbout: "Meistä",
-    navServices: "Palvelut",
-    navGallery: "Viitteet",
-    navTestimonials: "Ota yhteyttä",
-    navContact: "Ota meihin yhteyttä sähköpostitse",
-    // Services Dropdown
-    dropService1: "Keittiöremontti",
-    dropService2: "Kylpyhuoneen uusiminen",
-    dropService3: "Keittiön uusiminen",
-    dropService4: "Maalaustoimeksianto",
-    dropService5: "Tapetti"
-  },
   en: {
     dir: "ltr",
     brandTitle: "LK Renovation",
@@ -219,78 +146,6 @@ const i18n = {
     dropService3: "Köks renovering",
     dropService4: "Målerij tjänst",
     dropService5: "Tapet"
-  },
-  ar: {
-    dir: "rtl",
-    brandTitle: "LK Renovation",
-    brandSubtitle: "ترميم وتصميم داخلي — خبرة في السويد",
-    heroTitle: "ترميم وتصميم  احترافي", 
-    heroText: "نحوّل المنازل إلى مساحات عملية وأنيقة — المطابخ، الأرضيات، الدهان، الكهرباء والإضاءة السقفية.",
-    services: [
-      {title:"ترميم المطابخ", text:"تصميم وتنفيذ كامل: خزائن، أسطح عمل،  وتشطيب."},
-      {title:"الأرضيات", text:"تركيب أرضيات عالية الجودة: باركيه، لامينت، فينيل."},
-      {title:"طلاء الجدران", text:"دهانات أوروبية متينة وتشطيبات حديثة."},
-      {title:"أعمال كهربائية", text:"ترقيات آمنة وحلول كهربائية عصرية."},
-      {title:"إضاءة السقف", text:"إضاءات مخفية وزخرفية مهنية."},
-      {title:"إدارة المشروع", text:"من التخطيط حتى التسليم — جداول زمنية و رقابة جودة."}
-    ],
-    aboutTitle: "عن LK Renovation",
-    aboutText: "اسمي [اسمك]. أختص بترميم وتجديد المنازل وخبرتي تطورت في السويد. أركز على التفاصيل والأمان والتصميم العصري.",
-    contactBtn: "اتصل الآن",
-    contactBtnSidebar: "تواصل عبر واتساب",
-    whyTitle: "لماذا تختارنا؟",
-    whyList: ["معايير سويدية","أسعار شفافة","مواد عالية الجودة","استجابة سريعة"],
-    footer: "© {year} LK Renovation — جميع الحقوق محفوظة",
-    videoShowcaseTitle: "شاهد مشاريعنا",
-    videoShowcaseDesc: "تصفح الفيديوهات لرؤية جودة عملنا",
-    video1Title: "مشروع قبل التجديد",
-    video1Desc: "الحالة الأولية للمنزل",
-    video2Title: "مشروع أثناء العمل",
-    video2Desc: "مراحل التنفيذ والترميم",
-    video3Title: "النتيجة النهائية",
-    video3Desc: "المنزل بعد التجديد الكامل",
-    // Testimonials
-    testimonialsTitle: "ماذا يقول زبائننا",
-    testimonialsDesc: "آراء عملائنا الكرام",
-    testimonial1Text: "عمل رائع ومميّز! تم ترميم مطبخي بشكل احترافي وبَقى الوقت المحدد. النتيجة فاقت توقعاتي.",
-    testimonial1Name: "أحمد السعيد",
-    testimonial1Location: "ستيرسنّقال",
-    testimonial2Text: "الخدمة ممتازة والأسعار معقولة. فريق عمل محترف ومواد عالية الجودة. أنصح بهذه الشركة.",
-    testimonial2Name: "فاطمة عمر",
-    testimonial2Location: "السويد",
-    testimonial3Text: "تم تجديد منزلي بالكامل. العمل دقيق والتسليم في الموعد. شكراً لكم على هذا الإنجاز الرائع.",
-    testimonial3Name: "عبد الله",
-    testimonial3Location: "اورستشوند",
-    testimonial4Text: "أفضل شركة تَرميم تعاملت معها. الثقة في المواعيد والجودة العالية جعلتني عميل دائم.",
-    testimonial4Name: "أحمد كريم",
-    testimonial4Location: "هلسنكي",
-    // Footer
-    footerContactTitle: "تواصل معنا",
-    footerLocation: "السويد",
-    footerEmail: "louai.karim2009@gmail.com",
-    footerPhone: "46+ 023 429 761",
-    footerServicesTitle: "خدماتنا",
-    footerServicesList: ["✓ ترميم المطابخ", "✓ دهان الجدران", "✓ تركيب الأرضيات"],
-    footerAboutTitle: "تاريخنا",
-    footerRating: "تقييم 4/5 من عملائنا",
-    footerCopyright: "© {year} حقوق محفوظة — ماستر ترميم",
-    footerDeveloped: "تم التطوير 💗 في السويد",
-    // Gallery Before/After
-    galleryTitle: "قبل / بعد",
-    beforeText: "قبل",
-    afterText: "بعد",
-    // Navigation
-    navHome: "بيتنا",
-   
-    navServices: "خدمات",
-    navGallery: "مراجع",
-    navTestimonials: "اتصل بنا",
-    navContact: "راسلنا عبر البريد الإلكتروني",
-    // Services Dropdown
-    dropService1: "ترميم المطابخ",
-    dropService3: "تجديد المطبخ",
-    dropService4: "خدمة الطلاء",
-    dropService5: "ورق الجدران"
   }
 };
 
@@ -520,17 +375,6 @@ if(!document.getElementById('whyList').children.length){
 // Service Modal Functionality
 const serviceData = {
   kitchen: {
-    ar: {
-      title: "المطبخ هو قلب المنزل",
-      description: "، ندرك ويعتبر المطبخ قلب المنزل وجزءاً لا يتجزأ من حياتنا اليومية. باختيارنا لتجديد مطبخك، كن على ثقة بأننا سنأخذ رغباتك واحتياجاتك الشخصية في الاعتبار لنشيئ بيئة مطبخ فريدة وشخصية.\n\nمع، ستحصل على عمل على الجودة، ومواد محتارة بعناية، وتركيب احترافي. يرشدك خبراء خلال العملية بأكملها، من التصميم واختيار المواد حتى التنفيذ، لضمان أن تتجاوز النتيجة توقعاتك.",
-      features: [
-        "تصميم مطبخ جميل وعملي يلبي احتياجاتك",
-        " ذو خبرة وموثوقية",
-        "من التصميم واختيار المواد حتى التنفيذ",
-        "ضمان أن تتجاوز النتيجة توقعاتك"
-      ],
-      image: "assets/images/projects/lataus3.jpg"
-    },
     en: {
       title: "Kitchen Renovation in Östersund",
       description: "To successfully renovate your kitchen in Östersund, it is essential to engage experts specialized in this field. At Odéns Byggservice, we understand the importance of designing a beautiful and functional kitchen that meets your needs and desires.\n\nBy choosing us at  for your kitchen renovation in Östersund, you can be confident that you are working with experienced and reliable experts. We have extensive experience in this field and have completed many successful renovation projects.",
@@ -538,13 +382,13 @@ const serviceData = {
         "Beautiful and functional kitchen design that meets your needs",
         "Experienced and reliable experts",
         "From design and material selection to implementation",
-        "Guarantee that the result exceeds your expectations"
+        "Garantee that the result exceeds your expectations"
       ],
       image: "assets/images/projects/lataus3.jpg"
     },
     sv: {
       title: "Köksrenovering i Östersund",
-      description: "För att lyckas med din köksrenovering i Östersund är det nödvändigt att anlita experter som är specialiserade inom området. På Odéns Byggservice förstår vi vikten av att designa ett vackert och funktionellt kök som uppfyller dina behov och önskemål.\n\nGenom att välja oss på Odéns för din köksrenovering i Östersund kan du vara säker på att du samarbetar med erfarna och pålitliga experter. Vi har omfattande erfarenhet inom området och har genomfört många framgångsrika renoveringsprojekt.",
+      description: "För att lyckas med din köksrenovering i Östersund är det nödvändigt att anlita experter som är specialiserade inom området. På Odéns Byggservicellä ymmärrämme kauniin ja toimivan keittiön suunnittelun tärkeyden, joka vastaa tarpeisiisi ja toiveisiisi.\n\nGenom att välja oss på Odénsillä keittiöremonttiisi Östersundissa, voit olla varma, että työskentelet kokeneiden ja luotettavien asiantuntijoiden kanssa. Meillä on laaja kokemus alalta ja olemme toteuttaneet monia onnistuneita remonttiprojekteja.",
       features: [
         "Vackert och funktionellt kök design som uppfyller dina behov",
         "Erfarna och pålitliga experter",
@@ -552,31 +396,9 @@ const serviceData = {
         "Garanti att resultatet överträffar dina förväntningar"
       ],
       image: "assets/images/projects/lataus3.jpg"
-    },
-    fi: {
-      title: "Keittiöremontti Östersundissa",
-      description: "Jotta keittiöremonttisi onnistuisi Östersundissa, on tärkeää käyttää alan asiantuntijoita. Odéns Byggservicellä ymmärrämme kauniin ja toimivan keittiön suunnittelun tärkeyden, joka vastaa tarpeisiisi ja toiveisiisi.\n\nValitsemalla meidät Odénsillä keittiöremonttiisi Östersundissa, voit olla varma, että työskentelet kokeneiden ja luotettavien asiantuntijoiden kanssa. Meillä on laaja kokemus alalta ja olemme toteuttaneet monia onnistuneita remonttiprojekteja.",
-      features: [
-        "Kaunis ja toimiva keittiösuunnittelu, joka vastaa tarpeitasi",
-        "Kokeneet ja luotettavat asiantuntijat",
-        "Suunnittelusta ja materiaalivalinnasta toteutukseen",
-        "Takuu siitä, että tulos ylittää odotuksesi"
-      ],
-      image: "assets/images/projects/lataus3.jpg"
     }
   },
   painting: {
-    ar: {
-      title: "خدمة الطلاء المحترفة",
-      description: "نقدم خدمات طلاء احترافية عالية الجودة لمنزلك أو مكتبك. نستخدم أفضل المواد والتقنيات الحديثة لضمان نتائج مثالية تدوم طويلاً.",
-      features: [
-        "استخدام دهانات أوروبية عالية الجودة",
-        "تحضير السطح بشكل احترافي",
-        "تشطيبات حديثة ومتينة",
-        "أسعار تنافسية وشفافة"
-      ],
-      image: "assets/images/projects/lataus5.jpg"
-    },
     en: {
       title: "Professional Painting Service",
       description: "We offer high-quality professional painting services for your home or office. We use the best materials and modern techniques to ensure perfect results that last.",
@@ -598,31 +420,9 @@ const serviceData = {
         "Konkurrenskraftiga och transparenta priser"
       ],
       image: "assets/images/projects/lataus5.jpg"
-    },
-    fi: {
-      title: "Ammattitaitoinen Maalauspalvelu",
-      description: "Tarjoamme korkealaatuisia ammattimaisia maalauspalveluita kotiisi tai toimistoosi. Käytämme parhaita materiaaleja ja moderneja tekniikoita varmistaaksemme täydelliset ja kestävät tulokset.",
-      features: [
-        "Korkealaatuisten eurooppalaisten maalien käyttö",
-        "Ammattimainen pinnan valmistelu",
-        "Modernit ja kestävät viimeistelyt",
-        "Kilpailukykyiset ja läpinäkyvät hinnat"
-      ],
-      image: "assets/images/projects/lataus5.jpg"
     }
   },
   wallpaper: {
-    ar: {
-      title: "تركيب ورق الجدران",
-      description: "خدمة تركيب ورق الجدران الاحترافية لإضفاء لمسة جمالية فريدة على منزلك. نعمل مع أفضل أنواع ورق الجدران ونضمن تركيباً مثالياً.",
-      features: [
-        "مجموعة واسعة من التصاميم والأنماط",
-        "تركيب دقيق واحترافي",
-        "استشارات تصميم مجانية",
-        "ضمان على العمل والمواد"
-      ],
-      image: "assets/images/projects/lataus4.jpg"
-    },
     en: {
       title: "Wallpaper Installation",
       description: "Professional wallpaper installation service to add a unique aesthetic touch to your home. We work with the best types of wallpaper and ensure perfect installation.",
@@ -642,17 +442,6 @@ const serviceData = {
         "Precis och professionell installation",
         "Gratis designkonsultationer",
         "Garanti på arbete och material"
-      ],
-      image: "assets/images/projects/lataus4.jpg"
-    },
-    fi: {
-      title: "Tapetointitpalvelu",
-      description: "Ammattimainen tapetointipalvelu, joka tuo ainutlaatuisen esteettisen kosketuksen kotiisi. Työskentelemme parhaiden tapettien kanssa ja takaamme täydellisen asennuksen.",
-      features: [
-        "Laaja valikoima malleja ja kuvioita",
-        "Tarkka ja ammattimainen asennus",
-        "Ilmaiset suunnittelukonsultaatiot",
-        "Takuu työstä ja materiaaleista"
       ],
       image: "assets/images/projects/lataus4.jpg"
     }
@@ -744,4 +533,83 @@ document.addEventListener('click', (e) => {
       dropdown.classList.remove('active');
     });
   }
+});
+
+// reveal animation
+const revealElements = document.querySelectorAll(
+  '.hero, .service-card, .video-showcase, .testimonials-section, .gallery, aside .card'
+);
+
+revealElements.forEach((el) => {
+  el.classList.add('reveal');
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+revealElements.forEach((el) => {
+  revealObserver.observe(el);
+});
+
+/* COUNTER ANIMATION */
+
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const counter = entry.target;
+      const target = +counter.dataset.target;
+      let current = 0;
+      const increment = target / 80;
+      const updateCounter = () => {
+        current += increment;
+        if(current < target){
+          counter.innerText = Math.ceil(current);
+          requestAnimationFrame(updateCounter);
+        }else{
+          if(target === 100){
+            counter.innerText = target + '%';
+          }else if(target === 24){
+            counter.innerText = '24/7';
+          }else{
+            counter.innerText = target + '+';
+          }
+        }
+      };
+      updateCounter();
+      counterObserver.unobserve(counter);
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+counters.forEach(counter => {
+  counterObserver.observe(counter);
+});
+
+/* LOADER */
+
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 1200);
+});
+
+/* CURSOR GLOW */
+
+const cursorGlow = document.querySelector('.cursor-glow');
+
+document.addEventListener('mousemove', (e) => {
+  cursorGlow.style.left = e.clientX + 'px';
+  cursorGlow.style.top = e.clientY + 'px';
 });
