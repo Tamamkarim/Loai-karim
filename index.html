@@ -147,63 +147,89 @@
           </div>
 
           <!-- Video Showcase Section -->
-          <div class="video-showcase reveal" id="videoShowcase">
-            <h3 id="videoShowcaseTitle">Watch Our Projects</h3>
-            <p id="videoShowcaseDesc">Browse videos to see the quality of our work</p>
-            
-            <div class="video-grid">
-              <!-- Video Comparison: Before/After with Slider -->
-              <div class="video-comparison-container">
-                <div class="video-comparison-slider" id="videoComparisonSlider">
-                  <div class="comparison-item before-item">
-                    <span class="ba-badge before">Before</span>
-                    <video class="comparison-video" id="beforeVideo" muted loop>
-                      <source src="assets/videos/työnalla.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video>
-                    <div class="video-caption-overlay">
-                      <h4 id="video1Title">Project Before Renovation</h4>
-                      <p id="video1Desc">Initial condition of the home</p>
-                    </div>
-                  </div>
-                  
-                  <div class="comparison-item after-item" id="afterContainer">
-                    <span class="ba-badge after">After</span>
-                    <video class="comparison-video" id="afterVideo" muted loop>
-                      <source src="assets/videos/jälkeen1.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video>
-                    <div class="video-caption-overlay">
-                      <h4 id="video2Title">Project During Work</h4>
-                      <p id="video2Desc">Stages of implementation and renovation</p>
-                    </div>
-                  </div>
-                  
-                  <div class="comparison-slider-handle" id="sliderHandle">
-                    <div class="slider-line"></div>
-                    <div class="slider-button">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9 19l7-7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<section class="video-showcase">
 
-              <!-- Single Video -->
-              <div class="video-item">
-                <video class="project-video" controls preload="metadata">
-                  <source src="assets/videos/uusi.mp4" type="video/mp4">
-                  متصفحك لا يدعم عرض الفيديو
-                </video>
-                <div class="video-caption">
-                  <h4 id="video3Title">Final Result</h4>
-                  <p id="video3Desc">Home after complete renovation</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  <h3>Our Renovation Projects</h3>
+
+  <p>
+    Watch real renovation work by LK Renovation
+  </p>
+
+  <div class="video-grid">
+
+    <!-- VIDEO -->
+    <div class="video-item glass">
+
+      <video class="project-video" controls muted playsinline>
+        <source src="assets/videos/jälkeen1.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-caption">
+        <h4>Modern Apartment Renovation</h4>
+        <p>Luxury interior finishing</p>
+      </div>
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-item glass">
+
+      <video class="project-video" controls muted playsinline>
+        <source src="assets/videos/loaik.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-caption">
+        <h4>Interior Design Project</h4>
+        <p>Professional renovation solutions</p>
+      </div>
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-item glass">
+
+      <video class="project-video" controls muted playsinline>
+        <source src="assets/videos/loaikarim.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-caption">
+        <h4>Kitchen Renovation</h4>
+        <p>Modern kitchen transformation</p>
+      </div>
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-item glass">
+
+      <video class="project-video" controls muted playsinline>
+        <source src="assets/videos/työnalla.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-caption">
+        <h4>Renovation In Progress</h4>
+        <p>Construction and finishing work</p>
+      </div>
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-item glass">
+
+      <video class="project-video" controls muted playsinline>
+        <source src="assets/videos/uusi.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-caption">
+        <h4>Premium Home Design</h4>
+        <p>Elegant Scandinavian renovation</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
           <!-- Testimonials Section -->
           <div class="testimonials-section reveal" id="testimonials">
