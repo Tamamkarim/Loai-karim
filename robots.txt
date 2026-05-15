@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://renoveringstjnster.netlify.app/sitemap.xml
+Sitemap: https://lkrenovering.netlify.app/sitemap.xml
