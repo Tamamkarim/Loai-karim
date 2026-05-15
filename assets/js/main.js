@@ -9,7 +9,7 @@ function revealOnScroll(){
     const elementTop = element.getBoundingClientRect().top;
 
     if(elementTop < windowHeight - 80){
-      element.classList.add('active');
+      element?.classList.add('active');
     }
   });
 }
@@ -344,7 +344,7 @@ function render(lang){
 
   // lang buttons active
   document.querySelectorAll('.lang-btn').forEach(b=>{
-    b.classList.toggle('active', b.dataset.lang === lang);
+    b?.classList.toggle('active', b.dataset.lang === lang);
   });
 
   // font-family switch for arabic
@@ -491,12 +491,12 @@ function openServiceModal(serviceType) {
     featuresContainer.appendChild(div);
   });
   
-  modal.classList.add('active');
+  modal?.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeServiceModal() {
-  modal.classList.remove('active');
+  modal?.classList.remove('active');
   document.body.style.overflow = '';
 }
 
@@ -515,7 +515,7 @@ modalContactBtn.addEventListener('click', openContact);
 
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.classList.contains('active')) {
+  if (e.key === 'Escape' && modal?.classList.contains('active')) {
     closeServiceModal();
   }
 });
@@ -534,12 +534,12 @@ document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
         // Close other dropdowns
         document.querySelectorAll('.nav-dropdown').forEach(other => {
           if (other !== dropdown) {
-            other.classList.remove('active');
+            other?.classList.remove('active');
           }
         });
         
         // Toggle current dropdown
-        dropdown.classList.toggle('active');
+        dropdown?.classList.toggle('active');
       }
     });
   }
@@ -549,7 +549,7 @@ document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.nav-dropdown')) {
     document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-      dropdown.classList.remove('active');
+      dropdown?.classList.remove('active');
     });
   }
 });
@@ -560,13 +560,13 @@ const revealElements = document.querySelectorAll(
 );
 
 revealElements.forEach((el) => {
-  el.classList.add('reveal');
+  el?.classList.add('reveal');
 });
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+      entry.target?.classList.add('show');
     }
   });
 }, {
@@ -620,7 +620,7 @@ counters.forEach(counter => {
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
-    loader.classList.add('hidden');
+    loader?.classList.add('hidden');
   }, 1200);
 });
 
@@ -629,6 +629,8 @@ window.addEventListener('load', () => {
 const cursorGlow = document.querySelector('.cursor-glow');
 
 document.addEventListener('mousemove', (e) => {
-  cursorGlow.style.left = e.clientX + 'px';
-  cursorGlow.style.top = e.clientY + 'px';
+  if(cursorGlow){
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+  }
 });

@@ -1,21 +1,97 @@
+/* Contact Form Section Styles */
+.contact-form-section{
+  margin-top:40px;
+  padding:50px 24px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(15,23,32,0.96),
+            rgba(31,58,116,0.92),
+            rgba(139,94,60,0.82)
+          );
+  border-radius:18px;
+}
+
+.contact-form-section h2{
+  color:#fff;
+  margin-bottom:24px;
+  font-size:28px;
+}
+
+.contact-form{
+  max-width:900px;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+.form-group label{
+  display:block;
+  color:#fff;
+  margin-bottom:8px;
+  font-weight:700;
+}
+
+.form-group input,
+.form-group textarea{
+  width:100%;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.18);
+  backdrop-filter:blur(10px);
+  border-radius:24px;
+  padding:14px 18px;
+  color:#fff;
+  font-size:15px;
+  outline:none;
+}
+
+.form-group textarea{
+  min-height:140px;
+  resize:vertical;
+}
+
+.contact-form button{
+  background:#2fa463;
+  color:#fff;
+  border:none;
+        padding:14px 32px;
+        background:
+          linear-gradient(
+            90deg,
+            var(--accent-navy),
+            var(--accent-warm)
+          );
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.contact-form button:hover{
+  transform:translateY(-2px);
+}
+
+@media(max-width:640px){
+
+  .form-row{
+    grid-template-columns:1fr;
+  }
+
+}
 /* Floating WhatsApp Button */
 .floating-whatsapp{
-  position:fixed;
-  right:22px;
-  bottom:22px;
+.whatsapp-float{
+  bottom:20px;
+  right:18px;
   width:58px;
   height:58px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  font-size:28px;
-  color:#fff;
-  background:linear-gradient(135deg,#25D366,var(--accent-navy));
-  box-shadow:0 12px 30px rgba(0,0,0,.45);
-  z-index:9999;
-  animation:whatsappPulse 2.2s ease-in-out infinite;
+  z-index:999;
 }
 
 .floating-whatsapp:hover{
@@ -32,18 +108,16 @@
 }
 
 @media (max-width:768px){
-  .floating-whatsapp{
+  .whatsapp-float{
     bottom:86px;
     right:16px;
   }
 }
+}
 /* Scroll Reveal Animation */
 .reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s ease;
+  opacity:1;
+  transform:none;
 }
 
 .reveal.active{
@@ -607,6 +681,8 @@ main{
 .service-card{
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   padding:16px;
+  border-radius:14px;
+  .hero h2{ margin:0 0 8px 0; color:#fff; font-size:22px; font-weight:700; line-height:1.4; }
   border-radius:10px;
   border:1px solid rgba(255,255,255,0.02);
   box-shadow: 0 6px 18px rgba(0,0,0,0.6);
